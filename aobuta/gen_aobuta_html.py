@@ -80,6 +80,88 @@ def sheet_rows(ws):
     return rows
 
 
+TRANS_ROUTE_RE = re.compile(r"^(.+?)\s*→\s*(.+?)（(?:([^，）]+)，)?约?(\d+)分）$")
+TRANS_DEPARR_RE = re.compile(
+    r"^班次：\s*(\d{1,2}:\d{2})\s*発\s*(.*?)\s*→\s*(\d{1,2}:\d{2})\s*着\s*(.*?)(?:\s*[｜|]\s*(.+))?$"
+)
+TRANS_PILLS_RE = re.compile(r"^班次：(.+)$")
+TTIME_RE = re.compile(r"\d{1,2}:\d{2}")
+PAREN_RE = re.compile(r"[（(]([^）)]*)[）)]")
+
+
+def _side(txt):
+    """到发条一侧的附加信息：括号内=站台徽章，其余=普通徽章。"""
+    txt = (txt or "").strip()
+    if not txt:
+        return ""
+    out = []
+    plain = PAREN_RE.sub("", txt).strip()
+    if plain:
+        out.append('<span class="da-x">%s</span>' % esc(plain))
+    for plat in PAREN_RE.findall(txt):
+        out.append('<span class="da-x">%s</span>' % esc(plat))
+    return "".join(out)
+
+
+def trans_html(act_txt, note_txt, fee, start):
+    """交通专用卡片：到发条 / 班次 pill / 后备灰字 / 注意条 / 费用徽章。解析失败返回 None 走通用卡片。"""
+    m = TRANS_ROUTE_RE.match(act_txt)
+    if not m:
+        return None
+    dep, arr, line, dur = (g.strip() if g else "" for g in m.groups())
+    out = ['<div class="route"><span class="r-st">%s</span><span class="r-arr">→</span>'
+           '<span class="r-st">%s</span>%s</div>'
+           % (esc(dep), esc(arr), '<span class="r-dur">%s分</span>' % esc(dur) if dur else "")]
+    if line:
+        out.append('<div class="r-line">🚃 %s</div>' % esc(line))
+    chips = []
+    for raw in str(note_txt or "").split("\n"):
+        ln = raw.strip()
+        if not ln:
+            continue
+        dm = TRANS_DEPARR_RE.match(ln)
+        if dm:
+            t1, s1, t2, s2, tail = dm.groups()
+            cells = ['<span class="da-t">%s</span><span class="da-l">発</span>' % esc(t1)]
+            cells.append(_side(s1))
+            cells.append('<span class="da-arrow">→</span>')
+            cells.append('<span class="da-t">%s</span><span class="da-l">着</span>' % esc(t2))
+            cells.append(_side(s2))
+            out.append('<div class="deparr" data-l="班次">%s</div>' % "".join(cells))
+            if tail:
+                if len(tail) <= 8:
+                    chips.append(esc(tail))
+                else:
+                    out.append('<div class="tnote" data-l="备注">%s</div>' % hl(tail))
+            continue
+        pm = TRANS_PILLS_RE.match(ln)
+        if pm and TTIME_RE.search(pm.group(1)):
+            body = pm.group(1)
+            m2 = re.search(r"（([^）]+)）\s*$", body)
+            extra = m2.group(1).strip() if m2 else ""
+            if m2:
+                body = body[:m2.start()]
+            pills = "".join('<span class="pill%s">%s</span>' % (" on" if t == start else "", esc(t))
+                            for t in TTIME_RE.findall(body))
+            out.append('<div class="pills" data-l="班次">%s</div>' % pills)
+            if extra:
+                out.append('<div class="tnote bk" data-l="备注">%s</div>' % hl(extra))
+            continue
+        if ln.startswith(("后备", "错过", "赶不上")):
+            out.append('<div class="tnote bk" data-l="后备">%s</div>' % hl(ln))
+        elif "⚠" in ln:
+            out.append('<div class="tnote wn" data-l="注意">%s</div>' % hl(ln))
+        else:
+            out.append('<div class="tnote" data-l="备注">%s</div>'
+                       % hl(re.sub(r"^备注：", "", ln)))
+    if fee not in (None, ""):
+        chips.insert(0, "%s円" % fee)
+    if chips:
+        out.append('<div class="tchips">%s</div>'
+                   % "".join('<span class="chip fare">%s</span>' % c for c in chips))
+    return "".join(out)
+
+
 def render_timeline_item(r, header, is_time):
     """生成一个 .item。is_time=True 时带左侧时间轨。"""
     tds = []
@@ -101,6 +183,17 @@ def render_timeline_item(r, header, is_time):
         act = str(r[1]).strip() if len(r) > 1 and r[1] is not None else ""
         title_parts = [time_txt, act] if act else [time_txt]
         start_idx = 2
+        # 交通专用卡片：线路徽章 + 到发条 + 班次 pill，替换通用字段流
+        if act == "交通":
+            note_txt = r[3] if len(r) > 3 else None
+            fee = r[4] if len(r) > 4 else None
+            th = trans_html(str(r[2]).strip() if r[2] is not None else "", note_txt, fee, st)
+            if th:
+                short = re.sub(r"（.*?）", "", str(r[2]).strip()).strip()
+                tr_attrs += ' data-title="%s %s"' % (esc(st), esc(short))
+                rail_t = '<div class="rail"><span class="t-start">%s</span></div>' % st
+                return ('<div class="%s"%s>%s<div class="card trans">%s</div></div>'
+                        % (" ".join(cls), tr_attrs, rail_t, th))
         # 额外字段（第3列起）
         for i in range(start_idx, len(r)):
             c = r[i]
@@ -157,7 +250,8 @@ def render_timeline_item(r, header, is_time):
     chev = '<span class="chev">›</span>'
 
     f_html = "".join(
-        '<div class="f"><span class="fl">%s</span><span class="fv">%s</span></div>' % (esc(l), hl(v))
+        '<div class="f"><span class="fl">%s</span><span class="fv">%s</span></div>'
+        % (esc(l), hl(v).replace("\n", "<br>"))
         for l, v in fields
     )
     c_html = "".join('<span class="chip %s">%s</span>' % (k, esc(t)) for k, t in chips)
@@ -309,6 +403,35 @@ h2 .ico {{ width:27px; height:27px; border-radius:9px; flex:0 0 auto;
 .hl {{ color:var(--primary-d); font-weight:800; background:#eaf2fe; padding:0 3px; border-radius:4px; }}
 .fv .hl {{ white-space:nowrap; }}
 
+/* ---------- 交通专用卡片 ---------- */
+.card.trans {{ border-left:3px solid var(--primary);
+  background:linear-gradient(180deg,#f6faff,#fff 60%); }}
+.route {{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; }}
+.r-st {{ font-weight:800; font-size:15.5px; color:var(--ink); }}
+.r-arr {{ color:var(--primary); font-weight:800; }}
+.r-dur {{ font-size:11px; font-weight:800; color:var(--primary-d);
+  background:#eaf2fe; padding:2px 8px; border-radius:999px; margin-left:2px; }}
+.r-line {{ font-size:12px; color:#5a708a; font-weight:700; margin-top:3px; }}
+.deparr {{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-top:8px;
+  background:#fff; border:1px solid #e3edfc; border-radius:10px; padding:7px 10px; }}
+.da-t {{ font-weight:800; font-size:15px; color:var(--primary-d); font-variant-numeric:tabular-nums; }}
+.da-l {{ font-size:10.5px; color:#8496aa; font-weight:800; margin-left:1px; }}
+.da-x {{ font-size:11px; color:#5a708a; background:#f1f6fd; border-radius:6px; padding:1px 6px; }}
+.da-arrow {{ color:var(--primary); font-weight:800; font-size:14px; margin:0 2px; }}
+.pills {{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }}
+.pill {{ font-size:12.5px; font-weight:800; font-variant-numeric:tabular-nums;
+  background:#eef4fd; border:1px solid #dbe8fb; color:#33506f;
+  padding:3px 11px; border-radius:999px; }}
+.pill.on {{ background:var(--primary); border-color:var(--primary); color:#fff;
+  box-shadow:0 2px 8px rgba(37,99,235,.35); }}
+.tnote {{ font-size:12.5px; line-height:1.6; color:#42586e; margin-top:7px;
+  padding-left:9px; border-left:2px solid #dce7f5; }}
+.tnote.bk {{ color:#8ba0b5; font-size:11.5px; border-left-color:#e4ecf5; }}
+.tnote.wn {{ color:var(--warn-ink); background:var(--warn-bg); border:1px solid var(--warn-bd);
+  border-left:none; border-radius:8px; padding:6px 9px; font-weight:700; }}
+.tchips {{ margin-top:8px; display:flex; flex-wrap:wrap; gap:6px; }}
+.chip.fare {{ color:var(--ok-ink); background:var(--ok-bg); border:1px solid var(--ok-bd); }}
+
 /* 非 s1 的列表（无轨道） */
 .list .item {{ padding:0 0 10px; }}
 
@@ -411,10 +534,19 @@ footer {{ text-align:center; color:#8ea1b5; font-size:11.5px; padding:18px 0 cal
       out += '<div class="m-field"><div class="m-label">' + lt +
              '</div><div class="m-val">' + vh + '</div></div>';
     }});
+    item.querySelectorAll('.deparr,.pills,.tnote').forEach(function (n) {{
+      var l = n.getAttribute('data-l') || '备注';
+      var t = n.classList.contains('pills')
+        ? Array.prototype.map.call(n.querySelectorAll('.pill'), function (p) {{ return p.textContent; }}).join(' / ')
+        : n.innerHTML;
+      if (!t || !n.textContent.trim()) return;
+      out += '<div class="m-field"><div class="m-label">' + l + '</div><div class="m-val">' + t + '</div></div>';
+    }});
     var chips = item.querySelectorAll('.chip');
     if (chips.length) {{
       var ct = Array.prototype.map.call(chips, function (c) {{ return c.textContent; }}).join(' / ');
-      out += '<div class="m-field"><div class="m-label">标记</div><div class="m-val">' +
+      var cl = item.querySelector('.chip.fare') ? '费用 / 标记' : '标记';
+      out += '<div class="m-field"><div class="m-label">' + cl + '</div><div class="m-val">' +
              ct.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</div></div>';
     }}
     if (!out) out = '<div class="m-val">（本条无附加说明）</div>';
