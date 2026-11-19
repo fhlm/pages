@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       xlsx_filename:
-        description: "Excel 文件名（须与仓库根目录下文件名完全一致，含扩展名）"
+        description: "Excel 文件名（须与 aobuta/ 下文件名完全一致，含扩展名；留空则自动识别）"
         required: false
         default: "青ブタ圣地巡礼时间表_2026-11-22.xlsx"
   push:
