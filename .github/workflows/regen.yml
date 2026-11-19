@@ -9,7 +9,7 @@ on:
         default: "青ブタ圣地巡礼时间表_2026-11-22.xlsx"
   push:
     paths:
-      - "aobuta/*.xlsx"
+      - "*.xlsx"
 
 permissions:
   contents: write
@@ -28,13 +28,11 @@ jobs:
         run: pip install openpyxl
 
       - name: Run generator (force rebuild every run)
-        working-directory: aobuta
         run: |
           python force_regen.py
 
-      - name: Move index.html to Pages root
+      - name: Verify index.html regenerated
         run: |
-          mv aobuta/index.html index.html
           test -s index.html
           echo "index.html size: $(wc -c < index.html)"
 
