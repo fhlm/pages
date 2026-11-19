@@ -1,0 +1,20 @@
+# ===== 硬性安全约束（不可移除）=====
+# 绝对不允许把 E:\Workspace 下的任何内容上传到 GitHub（用户 2026-11-19 指定）。
+# 本仓库只允许存在以下白名单内容：
+#   - index.html（巡礼时间表网页）
+#   - 青ブタ*.xlsx / *.html（行程数据与网页副本）
+#   - gen_aobuta_*.py / force_regen.py（本仓库专用生成脚本，无外部路径依赖）
+#   - .github/workflows/（部署流水线）
+# 任何来自 E:\Workspace 的脚本、配置、文档、记忆、.workbuddy 内容一律不得进入本仓库。
+
+# Git 内部文件
+.git/
+
+# 生成产物（由 CI 重建，不必入仓）
+_ci_*
+*.pyc
+__pycache__/
+
+# 本机个人配置
+Thumbs.db
+desktop.ini
