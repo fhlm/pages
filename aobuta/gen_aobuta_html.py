@@ -12,6 +12,37 @@ OUT = r"D:\AI\Default\青ブタ圣地巡礼时间表_2026-11-22.html"
 
 TIME_RE = re.compile(r"^(\d{1,2}):(\d{2})(?:\s*[–\-~—]\s*(\d{1,2}):(\d{2}))?")
 
+# 重点高亮：时刻 / 金额 / 时长 / 关键换乘词（在卡片正文里自动加 <b class="hl">）
+HL_RE = re.compile(
+    r"(\d{1,2}:\d{2}"                 # 时刻
+    r"|[\d,]+\s?円"                   # 金额
+    r"|\d+分"                         # 时长
+    r"|\d+小时"                       # 时长（小时）
+    r"|最后入场\s?\d{1,2}:\d{2}"
+    r"|末班[^，。；、）]*"
+    r"|直达|0换乘|直通|当駅始発"
+    r"|实查班次|后备|赶不上[^，。；、]*"
+    r"|✅|⚠)"
+)
+
+
+def esc(v):
+    return html.escape("" if v is None else str(v))
+
+
+def hl(v):
+    """转义并高亮重点片段：先按 HL_RE 拆分，各段分别转义后再包 <b class=hl>。"""
+    s = "" if v is None else str(v)
+    out = []
+    for i, part in enumerate(HL_RE.split(s)):
+        if not part:
+            continue
+        e = esc(part)
+        if i % 2 == 1:
+            e = '<b class="hl">%s</b>' % e
+        out.append(e)
+    return "".join(out)
+
 NAV_ICONS = {
     "主时间表": "🕘",
     "圣地清单": "📍",
@@ -126,7 +157,7 @@ def render_timeline_item(r, header, is_time):
     chev = '<span class="chev">›</span>'
 
     f_html = "".join(
-        '<div class="f"><span class="fl">%s</span><span class="fv">%s</span></div>' % (esc(l), esc(v))
+        '<div class="f"><span class="fl">%s</span><span class="fv">%s</span></div>' % (esc(l), hl(v))
         for l, v in fields
     )
     c_html = "".join('<span class="chip %s">%s</span>' % (k, esc(t)) for k, t in chips)
@@ -275,6 +306,8 @@ h2 .ico {{ width:27px; height:27px; border-radius:9px; flex:0 0 auto;
 .chip.star3 {{ color:var(--amber-ink); background:var(--amber-bg); border:1px solid var(--amber-bd); }}
 .chip.star2 {{ color:var(--purple-ink); background:var(--purple-bg); border:1px solid var(--purple-bd); }}
 .chip.warn {{ color:var(--warn-ink); background:var(--warn-bg); border:1px solid var(--warn-bd); }}
+.hl {{ color:var(--primary-d); font-weight:800; background:#eaf2fe; padding:0 3px; border-radius:4px; }}
+.fv .hl {{ white-space:nowrap; }}
 
 /* 非 s1 的列表（无轨道） */
 .list .item {{ padding:0 0 10px; }}
@@ -315,6 +348,7 @@ h2 .ico {{ width:27px; height:27px; border-radius:9px; flex:0 0 auto;
 .m-field:last-child {{ border-bottom:none; }}
 .m-label {{ font-size:11px; font-weight:800; color:#8496aa; letter-spacing:.4px; margin-bottom:3px; }}
 .m-val {{ font-size:14px; line-height:1.7; color:#26384c; }}
+.m-val .hl {{ color:var(--primary-d); font-weight:800; background:#eaf2fe; padding:0 3px; border-radius:4px; }}
 @media (min-width:641px) {{
   .modal {{ align-items:center; padding:20px; }}
   .modal-card {{ border-radius:20px; }}
@@ -329,7 +363,7 @@ footer {{ text-align:center; color:#8ea1b5; font-size:11.5px; padding:18px 0 cal
   <div class="hx">
     <div class="hx-tag">2026-11-22（周日）</div>
     <h1>青ブタ × 孤独摇滚<br>圣地巡礼时间表</h1>
-    <p>住吉 07:00 出发 → 藤沢 → 七里ヶ浜 → 江ノ島 日落 → 湘南モノレール → 辻堂夜景晚餐<br>✈ 羽田 T3 · 23:55 起飞 · 21:40 前到达</p>
+    <p>住吉 08:09 出发 → 藤沢 09:47 → 七里ヶ浜 → 江ノ島 日落 → 湘南モノレール → 辻堂夜景晚餐<br>✈ 羽田 T3 · 23:55 起飞 · 21:27 前到达（全部为 11/22 实查班次）</p>
   </div>
   <div class="wave"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,42 C240,68 480,12 760,32 C1000,48 1220,16 1440,44 L1440,70 L0,70 Z" fill="#f2f5fa"/></svg></div>
 </header>
@@ -372,10 +406,10 @@ footer {{ text-align:center; color:#8ea1b5; font-size:11.5px; padding:18px 0 cal
     item.querySelectorAll('.f').forEach(function (f) {{
       var l = f.querySelector('.fl'), v = f.querySelector('.fv');
       var lt = l ? l.textContent.replace(/·\\s*$/, '') : '';
-      var vt = v ? v.textContent : '';
-      if (!vt) return;
+      var vh = v ? v.innerHTML : '';
+      if (!vh || !v.textContent.trim()) return;
       out += '<div class="m-field"><div class="m-label">' + lt +
-             '</div><div class="m-val">' + vt.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</div></div>';
+             '</div><div class="m-val">' + vh + '</div></div>';
     }});
     var chips = item.querySelectorAll('.chip');
     if (chips.length) {{
