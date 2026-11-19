@@ -21,11 +21,11 @@ force_regen.py             # CI 入口：依次跑上面两个脚本
 
 ## 更新流程
 
-### 方式一：改 Excel 后本地重发（推荐）
+### 方式一：本地修改后整链重发（推荐）
 
-1. 在 D:\AI\Default\ 改 gen_aobuta_xlsx.py → `python gen_aobuta_xlsx.py`
-2. `python gen_aobuta_html.py` 重新生成 HTML
-3. 把 xlsx 和 index.html 复制进本仓库根目录，git push
+1. 本地改 `gen_aobuta_xlsx.py` → `python gen_aobuta_xlsx.py`
+2. `python gen_aobuta_html.py` 重新生成 HTML（本地输出路径见脚本内 OUT，仓库内路径由 force_regen.py 注入）
+3. 把新 xlsx 和 index.html 覆盖到本目录，git push
 
 ### 方式二：只推 Excel，让 GitHub 自动重建
 
