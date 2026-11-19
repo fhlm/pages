@@ -32,16 +32,15 @@ jobs:
         run: |
           python force_regen.py
 
-      - name: Move regenerated index.html to Pages root
+      - name: Regenerated page lives at aobuta/index.html (hub layout keeps it there)
         run: |
-          mv -f aobuta/index.html index.html
-          test -s index.html
-          echo "index.html size: $(wc -c < index.html)"
+          test -s aobuta/index.html
+          echo "aobuta/index.html size: $(wc -c < aobuta/index.html)"
 
-      - name: Commit regenerated index.html
+      - name: Commit regenerated page
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html
-          git diff --cached --quiet && echo "no changes" || git commit -m "chore: regenerate index.html from xlsx [skip ci]"
+          git add aobuta/index.html
+          git diff --cached --quiet && echo "no changes" || git commit -m "chore: regenerate aobuta page from xlsx [skip ci]"
           git push
