@@ -14,12 +14,13 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
+REPO = ROOT.parent
 XLSX_NAME = None
 for p in ROOT.glob("*.xlsx"):
     XLSX_NAME = p.name
     break
 if not XLSX_NAME:
-    print("[force_regen] ERROR: no xlsx found in repo root", file=sys.stderr)
+    print("[force_regen] ERROR: no xlsx found in aobuta/", file=sys.stderr)
     sys.exit(1)
 
 print(f"[force_regen] using xlsx: {XLSX_NAME}")
@@ -27,9 +28,17 @@ print(f"[force_regen] using xlsx: {XLSX_NAME}")
 for script_name in ("gen_aobuta_xlsx.py", "gen_aobuta_html.py"):
     src_path = ROOT / script_name
     src = src_path.read_text(encoding="utf-8")
-    # 把写死的 D:\AI\Default\ 与反斜杠路径整体替换为仓库根（CI 上是 /home/runner/work/...）
-    patched = src.replace(r"D:\AI\Default", str(ROOT))
-    patched = patched.replace(r"D:\AI\DEFAULT", str(ROOT))
+    # 把写死的 D:\AI\Default\ 与反斜杠路径整体替换为 aobuta/（CI 与本地语义一致）
+    patched = src.replace(r"D:\AI\Default\fhlm.github.io\aobuta", str(ROOT))
+    patched = patched.replace(r"D:\AI\Default\aobuta-pilgrimage-site", str(ROOT))
+    patched = patched.replace(r"D:\AI\Default", str(ROOT))
+    if script_name == "gen_aobuta_html.py":
+        # 网页产物固定写为 aobuta/index.html，供 Pages 流程搬移
+        patched = re.sub(
+            r'OUT = r"[^"]+"',
+            'OUT = r"%s"' % (ROOT / "index.html").as_posix(),
+            patched,
+        )
     tmp = ROOT / f"_ci_{script_name}"
     tmp.write_text(patched, encoding="utf-8")
     print(f"[force_regen] run {script_name}")

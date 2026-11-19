@@ -1,314 +1,84 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>青ブタ×孤独摇滚 圣地巡礼时间表 2026-11-22</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fhlm 的静态页面集</title>
 <style>
-:root { --c1:#0f6bb8; --bg:#f4f7fb; --card:#fff; --ok:#e8f5e9; --ok-b:#2e7d32;
-  --star3:#fff8e1; --star3-b:#f9a825; --star2:#f3e5f5; --star2-b:#8e24aa; --warn:#fff3e0; }
-* { box-sizing:border-box; }
-body { margin:0; background:var(--bg); color:#1c2733;
-  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; font-size:15px; }
-header { background:linear-gradient(135deg,#0f6bb8,#0a4d85); color:#fff; padding:18px 16px 14px; }
-header h1 { margin:0 0 4px; font-size:19px; }
-header p { margin:0; font-size:12.5px; opacity:.85; }
-nav { position:sticky; top:0; z-index:9; background:#fff; display:flex; gap:6px; overflow-x:auto;
-  border-bottom:1px solid #e1e8ef; padding:8px 10px; }
-nav a { flex:0 0 auto; padding:8px 12px; font-size:13.5px; color:var(--c1); text-decoration:none;
-  white-space:nowrap; font-weight:600; background:#eef4fa; border-radius:999px; }
-nav a.active { background:var(--c1); color:#fff; }
-section { padding:14px 12px 4px; }
-section.hidden { display:none; }
-h2 { font-size:16.5px; margin:2px 2px 10px; color:var(--c1); }
-.sheet-title { font-size:12.5px; color:#5a6b7d; margin:0 2px 8px; line-height:1.5; }
-.tablewrap { background:var(--card); border-radius:12px; overflow-x:auto;
-  box-shadow:0 1px 4px rgba(16,42,67,.08); }
-table { border-collapse:collapse; width:100%; font-size:13.5px; min-width:560px; }
-th { background:#eef4fa; color:#0a4d85; text-align:left; padding:9px 10px;
-  position:sticky; top:50px; font-size:12.5px; white-space:nowrap; }
-td { padding:8px 10px; border-top:1px solid #eef2f6; vertical-align:top; line-height:1.55; }
-td.first { font-weight:700; white-space:nowrap; color:#0a4d85; }
-td.ok { background:var(--ok); }
-td.star3 { background:var(--star3); }
-td.star2 { background:var(--star2); }
-td.warn { background:var(--warn); }
-footer { text-align:center; color:#8296a9; font-size:11.5px; padding:16px 0 26px; }
-tbody tr { cursor:pointer; }
-tbody tr:active { background:#f0f6fc; }
-tbody tr.now { outline:2px solid var(--c1); outline-offset:-2px; background:#eaf4fc; }
-@keyframes locatePulse { 0% { outline-color:rgba(15,107,184,.9); box-shadow:0 0 0 8px rgba(15,107,184,.30); }
-  100% { box-shadow:0 0 0 0 rgba(15,107,184,0); } }
-tbody tr.flash { animation:locatePulse 1.1s ease-out 2; }
-.fab { position:fixed; right:14px; bottom:18px; z-index:50; background:var(--c1); color:#fff;
-  border:none; border-radius:999px; padding:11px 16px; font-size:13.5px; font-weight:700;
-  box-shadow:0 4px 14px rgba(15,107,184,.45); cursor:pointer; }
-.fab:active { transform:scale(.96); }
-/* ---- 行程说明弹层 ---- */
-.modal { position:fixed; inset:0; background:rgba(10,30,50,.45); display:none; z-index:99;
-  align-items:flex-end; justify-content:center; }
-.modal.open { display:flex; }
-.modal-card { background:#fff; width:100%; max-width:560px; max-height:82vh; overflow-y:auto;
-  border-radius:16px 16px 0 0; padding:14px 16px 22px; box-shadow:0 -4px 24px rgba(0,0,0,.18); }
-.modal-head { display:flex; align-items:center; justify-content:space-between; gap:10px;
-  margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid #eef2f6; }
-#m-title { font-size:16.5px; font-weight:700; color:var(--c1); line-height:1.4; }
-#m-close { border:none; background:#eef4fa; color:#0a4d85; width:32px; height:32px; flex:0 0 auto;
-  border-radius:50%; font-size:17px; cursor:pointer; line-height:1; }
-.m-field { margin:0 0 12px; }
-.m-label { font-size:11px; font-weight:700; color:#8296a9; letter-spacing:.4px; margin-bottom:2px; }
-.m-val { font-size:14.5px; line-height:1.6; }
-@media (min-width: 641px) {
-  .modal { align-items:center; padding:20px; }
-  .modal-card { border-radius:16px; }
-}
-/* ---- 手机端：宽表转紧凑卡片式布局，不再横向滚动 ---- */
-@media (max-width: 640px) {
-  body { font-size:14px; -webkit-text-size-adjust:100%; }
-  section { padding:10px 8px 2px; }
-  h2 { font-size:15px; margin:0 2px 8px; }
-  nav { padding:6px 8px; }
-  nav a { padding:7px 11px; font-size:13px; }
-  table { min-width:0; font-size:13.5px; }
-  .tablewrap { background:transparent; box-shadow:none; border-radius:0; overflow:visible; }
-  thead { display:none; }
-  tbody tr { display:block; background:var(--card); border-radius:10px; margin:0 0 8px;
-    padding:1px 0; box-shadow:0 1px 3px rgba(16,42,67,.08); overflow:hidden; }
-  td { display:block; border-top:none; padding:4px 12px; line-height:1.45; }
-  td::before { content:attr(data-label)': '; display:inline; font-size:12px; font-weight:700;
-    color:#8296a9; margin-right:2px; }
-  td.first { white-space:normal; font-size:14.5px; padding:8px 14px 2px; }
-  td.first.head { display:inline-block; padding:8px 6px 0 14px; }
-  td.first.head::before { display:none; }
-  td.sub { display:inline; padding:8px 14px 2px 0; color:#8296a9; font-size:13px; font-weight:600; }
-  td.sub::before { display:none; }
-  td.empty { display:none; }
-  td.ok, td.star3, td.star2, td.warn { margin:3px 6px; border-radius:6px; padding:4px 8px; }
-  footer { padding:12px 0 22px; }
-}
+  :root {
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --ink: #2c3e50;
+    --sub: #7f8c9b;
+    --accent: #3b82f6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 60px;
+  }
+  header { text-align: center; margin-bottom: 36px; }
+  header h1 { font-size: 26px; font-weight: 700; letter-spacing: 1px; }
+  header p { color: var(--sub); font-size: 14px; margin-top: 8px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 960px;
+  }
+  a.card {
+    display: block;
+    background: var(--card);
+    border-radius: 14px;
+    padding: 22px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    transition: transform .15s ease, box-shadow .15s ease;
+    border: 1px solid #e8edf2;
+  }
+  a.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(59,130,246,.15);
+  }
+  .card .icon { font-size: 34px; }
+  .card h2 { font-size: 18px; margin: 12px 0 6px; }
+  .card p { font-size: 13px; color: var(--sub); line-height: 1.6; }
+  .card .tag {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--accent);
+    background: rgba(59,130,246,.1);
+    border-radius: 20px;
+    padding: 3px 12px;
+  }
+  footer { margin-top: auto; padding-top: 48px; color: var(--sub); font-size: 12px; }
 </style>
 </head>
 <body>
-<header>
-  <h1>🎶 青ブタ × 孤独摇滚 圣地巡礼</h1>
-  <p>2026-11-22（周日）｜住吉出发 → 湘南 → 龟户晚餐 → 羽田 23:55 航班</p>
-</header>
-<nav><a href="#s1" data-s="s1">🕘 主时间表</a><a href="#s2" data-s="s2">📄 圣地清单(24)</a><a href="#s3" data-s="s3">📋 说明与备选</a><a href="#s4" data-s="s4">✅ 预约清单</a><a href="#s5" data-s="s5">🎸 孤独摇滚圣地</a></nav>
-<button id="fab-now" class="fab">📍 现在</button>
-<div id="modal" class="modal"><div class="modal-card"><div class="modal-head"><span id="m-title"></span><button id="m-close" aria-label="关闭">×</button></div><div id="m-body"></div></div></div>
-<section id="s1"><h2>🕘 主时间表</h2>
-<div class="sheet-title">青ブタ圣地巡礼时间表  2026-11-22（周日）  ｜  住吉出发 → 藤沢 → 七里ヶ浜 → 江ノ島 → 龟户晚餐 → 羽田 23:55 航班（含孤独摇滚·江ノ島顺路）</div>
-<div class="tablewrap"><table>
-<thead><tr><th>时间</th><th>类型</th><th>行程</th><th>说明 / 圣地</th><th>费用(円)</th></tr></thead>
-<tbody>
-<tr data-start="07:00"><td class="first head" data-label="时间">07:00</td><td class="sub" data-label="类型">准备</td><td class="" data-label="行程">起床・洗漱・更衣（约50分）</td><td class="" data-label="说明 / 圣地">前一晚看 Live 晚归，按 7 点起床排；07:50 出门</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="07:50"><td class="first head" data-label="时间">07:50</td><td class="sub" data-label="类型">步行</td><td class="" data-label="行程">住处 → 住吉站（步行约15分）</td><td class="" data-label="说明 / 圣地">用户实测距离；约 08:05 到站</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="08:10"><td class="first head" data-label="时间">08:10</td><td class="sub" data-label="类型">交通</td><td class="" data-label="行程">住吉站 → 新宿（都营新宿线，约20分）</td><td class="" data-label="说明 / 圣地">IC卡约280円</td><td class="" data-label="费用(円)">280</td></tr>
-<tr data-start="08:40"><td class="first head" data-label="时间">08:40</td><td class="sub" data-label="类型">交通</td><td class="" data-label="行程">新宿 → 藤沢（小田急快速急行，约55分）</td><td class="" data-label="说明 / 圣地">新宿站内换乘步行约5分</td><td class="" data-label="费用(円)">890</td></tr>
-<tr data-start="09:40"><td class="first head" data-label="时间">09:40</td><td class="sub" data-label="类型">节点</td><td class="" data-label="行程">抵达藤沢</td><td class="" data-label="说明 / 圣地">圣地② 藤沢駅；比 6 点起床版晚 1 小时，上午藤沢段已压缩 30 分保下午</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="09:45" data-end="10:10"><td class="first head" data-label="时间">09:45–10:10</td><td class="sub" data-label="类型">餐饮</td><td class="" data-label="行程">早餐 @ デニーズ藤沢北口店（7:00营业）</td><td class="" data-label="说明 / 圣地">圣地③ 吃饭巡礼一举两得；压缩为 25 分快餐</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="10:15" data-end="10:35"><td class="first head" data-label="时间">10:15–10:35</td><td class="sub" data-label="类型">巡礼</td><td class="" data-label="行程">御所ケ谷橋 → 御所ヶ谷公園 快速打卡（北口侧，外观即走）</td><td class="" data-label="说明 / 圣地">圣地④⑤；⑤=S1E6 咲太与中学生祥子初遇处（祥子圣地）；赶不上就舍公园直奔南口</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="10:40" data-end="10:55"><td class="first head" data-label="时间">10:40–10:55</td><td class="sub" data-label="类型">购物</td><td class="" data-label="行程">アニメイト藤沢（10:00开门）购青ブタ立牌/周边</td><td class="" data-label="说明 / 圣地">南口ドン・キホーテ藤沢駅南口店5F（南藤沢19-17，营业10:00–20:00，无需预约）；直奔目标货架，立牌留着后面圣地合影</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="11:00"><td class="first head" data-label="时间">11:00</td><td class="sub" data-label="类型">交通</td><td class="" data-label="行程">藤沢 → 七里ヶ浜（江ノ电，约25分，约每12分一班）</td><td class="" data-label="说明 / 圣地">先在检票口买江ノ电一日券「のりおりくん」大人800円；赶不上 11:00 班坐 11:12 班，午餐相应缩短即可</td><td class="" data-label="费用(円)">800</td></tr>
-<tr data-start="11:25"><td class="first head" data-label="时间">11:25</td><td class="sub" data-label="类型">节点</td><td class="" data-label="行程">抵达七里ヶ浜</td><td class="" data-label="说明 / 圣地">圣地⑦ 峰ヶ原高中最寄站</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="11:25" data-end="12:20"><td class="first head" data-label="时间">11:25–12:20</td><td class="sub" data-label="类型">巡礼</td><td class="" data-label="行程">七里ガ浜高校正门 → 駅横踏切 → 行合橋 → 七里ヶ浜海岸（立牌合影）</td><td class="" data-label="说明 / 圣地">圣地⑩⑨⑧⑪ 步行串联（55分紧凑版）；学校只在正门外拍照，绝不进入</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="12:25"><td class="first head" data-label="时间">12:25</td><td class="sub" data-label="类型">交通</td><td class="" data-label="行程">七里ヶ浜 → 鎌倉高校前（江ノ电2站，4分）</td><td class="" data-label="说明 / 圣地">一日券区间内</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="12:30" data-end="12:55"><td class="first head" data-label="时间">12:30–12:55</td><td class="sub" data-label="类型">巡礼</td><td class="" data-label="行程">鎌倉高校前站前平交道 + 路口拍照（立牌合影）</td><td class="" data-label="说明 / 圣地">圣地⑫《SLAM DUNK》同款路口；勿站入车道、勿长时间占位</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="13:00" data-end="14:10"><td class="first head" data-label="时间">13:00–14:10</td><td class="sub" data-label="类型">餐饮</td><td class="" data-label="行程">午餐：しらす丼（腰越/江ノ島站前，とびっちょ等名店）</td><td class="" data-label="说明 / 圣地">70分；14:15 水族馆入场保持不变</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="14:15"><td class="first head" data-label="时间">14:15</td><td class="sub" data-label="类型">观光</td><td class="" data-label="行程">新江ノ島水族館入场（约1.5小时）</td><td class="" data-label="说明 / 圣地">圣地⑮ 第1话水母场景原景；11月9:00–17:00、最后入场16:00</td><td class="" data-label="费用(円)">2800</td></tr>
-<tr data-start="15:45"><td class="first head" data-label="时间">15:45</td><td class="sub" data-label="类型">巡礼</td><td class="" data-label="行程">出馆 → 片瀬海岸 → 江の島弁天橋</td><td class="" data-label="说明 / 圣地">圣地⑯⑰ 站/馆步行4分、8分；孤独摇滚 S1E8 开头过桥/海岸镜头同款</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="16:00"><td class="first head" data-label="时间">16:00</td><td class="sub" data-label="类型">巡礼</td><td class="" data-label="行程">登江ノ島：参道大鳥居 → 江島神社 → 龙恋の鐘 → 展望台</td><td class="" data-label="说明 / 圣地">圣地⑱；孤独摇滚 S1E8 江ノ島观光话同路线（详见「孤独摇滚圣地」Sheet）；约16:40山顶看日落</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="17:20"><td class="first head" data-label="时间">17:20</td><td class="sub" data-label="类型">交通</td><td class="" data-label="行程">下岛 → 江ノ島站 → 藤沢（江ノ电约20分）</td><td class="" data-label="说明 / 圣地">一日券区间内（江ノ島→藤沢末班约22:20）</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="17:55"><td class="first head" data-label="时间">17:55</td><td class="sub" data-label="类型">交通</td><td class="" data-label="行程">藤沢 → 品川（JR东海道线，约50分）</td><td class="empty" data-label="说明 / 圣地"></td><td class="" data-label="费用(円)">950</td></tr>
-<tr data-start="18:55"><td class="first head" data-label="时间">18:55</td><td class="sub" data-label="类型">交通</td><td class="" data-label="行程">品川 → 龟户（总武快速，约15分）</td><td class="" data-label="说明 / 圣地">IC约170円</td><td class="" data-label="费用(円)">170</td></tr>
-<tr data-start="19:30" data-end="20:55"><td class="first head" data-label="时间">19:30–20:55</td><td class="sub" data-label="类型">餐饮</td><td class="" data-label="行程">龟户晚餐：ホルモン横丁烤肉 / とんかつ梅乃家炸猪排</td><td class="" data-label="说明 / 圣地">龟户站步行圈；与原计划一致</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr data-start="21:00"><td class="first head" data-label="时间">21:00</td><td class="sub" data-label="类型">交通</td><td class="" data-label="行程">龟户 → 品川（总武快速，约15分）</td><td class="" data-label="说明 / 圣地">IC约170円</td><td class="" data-label="费用(円)">170</td></tr>
-<tr data-start="21:40"><td class="first head" data-label="时间">21:40</td><td class="sub" data-label="类型">交通</td><td class="" data-label="行程">品川 → 羽田 第3航站楼（京急空港急行，约15–20分）</td><td class="" data-label="说明 / 圣地">京急末班约23:55</td><td class="" data-label="费用(円)">300</td></tr>
-<tr data-start="21:55"><td class="first head" data-label="时间">21:55</td><td class="sub" data-label="类型">节点</td><td class="" data-label="行程">到达羽田 第3航站楼</td><td class="" data-label="说明 / 圣地">距 23:55 起飞余约 2 小时 ✅</td><td class="empty" data-label="费用(円)"></td></tr>
-<tr><td class="first" data-label="时间">合计</td><td class="empty" data-label="类型"></td><td class="" data-label="行程">交通约 3,700円（IC卡）+ 水族馆 2,800円 + 餐饮（展望台500円/エスカー360円可选另计）</td><td class="empty" data-label="说明 / 圣地"></td><td class="" data-label="费用(円)">6700</td></tr>
-</tbody></table></div></section>
-<section id="s2" class="hidden"><h2>📄 圣地清单(24)</h2>
-<div class="sheet-title">攻略全24处圣地 × 本次行程覆盖情况</div>
-<div class="tablewrap"><table>
-<thead><tr><th>编号</th><th>圣地</th><th>区域</th><th>本次安排</th><th>备注</th></tr></thead>
-<tbody>
-<tr><td class="first" data-label="编号">1</td><td class="" data-label="圣地">藤沢市総合市民図書館</td><td class="" data-label="区域">湘南台</td><td class="" data-label="本次安排">未含</td><td class="" data-label="备注">第1话咲太遇麻衣处；湘南台站步行9分，周日9:00–17:00；加半天才来得及</td></tr>
-<tr><td class="first" data-label="编号">2</td><td class="" data-label="圣地">藤沢駅</td><td class="" data-label="区域">藤沢</td><td class="ok" data-label="本次安排">✓ 主行程</td><td class="" data-label="备注">JR东海道线，生活圈圣地，全天多次经过</td></tr>
-<tr><td class="first" data-label="编号">3</td><td class="" data-label="圣地">デニーズ藤沢北口店</td><td class="" data-label="区域">藤沢</td><td class="ok" data-label="本次安排">✓ 早餐</td><td class="" data-label="备注">北口步行5分，7:00–24:00 营业中</td></tr>
-<tr><td class="first" data-label="编号">4</td><td class="" data-label="圣地">御所ケ谷橋</td><td class="" data-label="区域">藤沢</td><td class="ok" data-label="本次安排">✓ 主行程</td><td class="" data-label="备注">北口步行10分；快速打卡15分</td></tr>
-<tr><td class="first" data-label="编号">5</td><td class="" data-label="圣地">御所ヶ谷公園</td><td class="" data-label="区域">藤沢</td><td class="ok" data-label="本次安排">✓ 主行程</td><td class="" data-label="备注">北口步行13分；S1E6 咲太与中学生祥子初遇处（祥子圣地），已加回快速打卡</td></tr>
-<tr><td class="first" data-label="编号">6</td><td class="" data-label="圣地">藤沢市民病院</td><td class="" data-label="区域">藤沢</td><td class="" data-label="本次安排">未含</td><td class="" data-label="备注">北口步行20分较远，时间紧可舍；外观打卡即可</td></tr>
-<tr><td class="first" data-label="编号">7</td><td class="" data-label="圣地">七里ヶ浜駅</td><td class="" data-label="区域">七里ヶ浜</td><td class="ok" data-label="本次安排">✓ 主行程</td><td class="" data-label="备注">江ノ电，峰ヶ原高中最寄站</td></tr>
-<tr><td class="first" data-label="编号">8</td><td class="" data-label="圣地">行合橋（ゆきあいばし）</td><td class="" data-label="区域">七里ヶ浜</td><td class="ok" data-label="本次安排">✓ 主行程</td><td class="" data-label="备注">与⑨⑩⑪步行串联</td></tr>
-<tr><td class="first" data-label="编号">9</td><td class="" data-label="圣地">七里ヶ浜駅横踏切</td><td class="" data-label="区域">七里ヶ浜</td><td class="ok" data-label="本次安排">✓ 主行程</td><td class="" data-label="备注">过桥左手；不在车道内拍照</td></tr>
-<tr><td class="first" data-label="编号">10</td><td class="" data-label="圣地">神奈川県立七里ガ浜高校</td><td class="" data-label="区域">七里ヶ浜</td><td class="ok" data-label="本次安排">✓ 主行程</td><td class="" data-label="备注">峰ヶ原高中原型；站步行2分，仅正门外拍照</td></tr>
-<tr><td class="first" data-label="编号">11</td><td class="" data-label="圣地">七里ヶ浜海岸</td><td class="" data-label="区域">七里ヶ浜</td><td class="ok" data-label="本次安排">✓ 主行程</td><td class="" data-label="备注">站步行约7分</td></tr>
-<tr><td class="first" data-label="编号">12</td><td class="" data-label="圣地">鎌倉高校前駅</td><td class="" data-label="区域">腰越</td><td class="ok" data-label="本次安排">✓ 主行程</td><td class="" data-label="备注">《SLAM DUNK》路口同站</td></tr>
-<tr><td class="first" data-label="编号">13</td><td class="" data-label="圣地">鶴岡八幡宮</td><td class="" data-label="区域">鎌倉</td><td class="" data-label="本次安排">备选</td><td class="" data-label="备注">剧场版初詣圣地；要去需从鎌倉高校前再搭江ノ电约15分+步行，挤掉登岛时间</td></tr>
-<tr><td class="first" data-label="编号">14</td><td class="" data-label="圣地">片瀬江ノ島駅</td><td class="" data-label="区域">江ノ島</td><td class="ok" data-label="本次安排">✓ 途经</td><td class="" data-label="备注">小田急终点，龙宫造型站舍</td></tr>
-<tr><td class="first" data-label="编号">15</td><td class="" data-label="圣地">新江ノ島水族館</td><td class="" data-label="区域">江ノ島</td><td class="ok" data-label="本次安排">✓ 主行程</td><td class="" data-label="备注">第1话水母场景；11月9:00–17:00最后入场16:00，成人2,800円</td></tr>
-<tr><td class="first" data-label="编号">16</td><td class="" data-label="圣地">片瀬海岸</td><td class="" data-label="区域">江ノ島</td><td class="ok" data-label="本次安排">✓ 主行程</td><td class="" data-label="备注">站/馆步行4分</td></tr>
-<tr><td class="first" data-label="编号">17</td><td class="" data-label="圣地">江の島弁天橋</td><td class="" data-label="区域">江ノ島</td><td class="ok" data-label="本次安排">✓ 主行程</td><td class="" data-label="备注">站步行8分，登岛必经</td></tr>
-<tr><td class="first" data-label="编号">18</td><td class="" data-label="圣地">江ノ島</td><td class="" data-label="区域">江ノ島</td><td class="ok" data-label="本次安排">✓ 主行程</td><td class="" data-label="备注">江島神社/龙恋の鐘/展望台，日落16:40前后最美</td></tr>
-<tr><td class="first" data-label="编号">19</td><td class="" data-label="圣地">鵠沼海岸</td><td class="" data-label="区域">鵠沼</td><td class="" data-label="本次安排">未含</td><td class="" data-label="备注">第8话花火圣地；在藤沢→江ノ島江ノ电路线上，看不花多少时间可顺访</td></tr>
-<tr><td class="first" data-label="编号">20</td><td class="" data-label="圣地">本鵠沼駅</td><td class="" data-label="区域">鵠沼</td><td class="" data-label="本次安排">未含</td><td class="" data-label="备注">双葉家最寄</td></tr>
-<tr><td class="first" data-label="编号">21</td><td class="" data-label="圣地">辻堂駅</td><td class="" data-label="区域">辻堂</td><td class="" data-label="本次安排">未含</td><td class="" data-label="备注">JR</td></tr>
-<tr><td class="first" data-label="编号">22</td><td class="" data-label="圣地">テラスモール湘南</td><td class="" data-label="区域">辻堂</td><td class="" data-label="本次安排">备选</td><td class="" data-label="备注">スイートバレット会场；辻堂站直结；起点在江东区不顺路，仅加藤沢西段时考虑</td></tr>
-<tr><td class="first" data-label="编号">23</td><td class="" data-label="圣地">SCAPES THE SUITE</td><td class="" data-label="区域">葉山</td><td class="" data-label="本次安排">未含</td><td class="" data-label="备注">剧场版翔子圣地；逗子站巴士15分，单程1.5小时+，本次放弃</td></tr>
-<tr><td class="first" data-label="编号">24</td><td class="" data-label="圣地">森戸海岸</td><td class="" data-label="区域">葉山</td><td class="" data-label="本次安排">未含</td><td class="" data-label="备注">同上区域，本次放弃</td></tr>
-</tbody></table></div></section>
-<section id="s3" class="hidden"><h2>📋 说明与备选</h2>
-<div class="sheet-title">关键前提 / 末班车核查 / 礼仪 / 备选方案</div>
-<div class="tablewrap"><table>
-<thead><tr><th>分类</th><th>内容</th><th>补充</th></tr></thead>
-<tbody>
-<tr><td class="first" data-label="分类">起点（已确认）</td><td class="" data-label="内容">东京都江东区 住吉站，住处→站步行约15分</td><td class="" data-label="补充">07:00 起床洗漱（前一晚看 Live 晚归）、07:50 出门、08:05 到站；主时间表已按 7 点起床版排定</td></tr>
-<tr><td class="first" data-label="分类">水族馆</td><td class="" data-label="内容">11月营业 9:00–17:00，最后入场 16:00，成人 2,800円，全年无休</td><td class="" data-label="补充">官网 www.enosui.com；14:15 入场留足 1.5 小时</td></tr>
-<tr><td class="first" data-label="分类">江ノ电一日券</td><td class="" data-label="内容">「のりおりくん」大人 800円（纸质版，留作纪念），藤沢⇄鎌倉全区间自由上下车</td><td class="" data-label="补充">藤沢站江ノ电检票口购买；电子版（EMot APP）仅作排队兜底；票面本身即巡礼纪念品</td></tr>
-<tr><td class="first" data-label="分类">青ブタ联动</td><td class="" data-label="内容">剧场版『ディアフレンド』10/16 公开，江ノ电「青ブタ号」+青ブタ样式站牌联动至 11/30 前后</td><td class="" data-label="补充">周日大概率能遇到青ブタ号；站牌在藤沢/江ノ島/七里ヶ浜/鎌倉，出发前可再确认</td></tr>
-<tr><td class="first" data-label="分类">日落</td><td class="" data-label="内容">11月下旬湘南日落约 16:40</td><td class="" data-label="补充">已把登岛排在 16:00–17:20 对准日落</td></tr>
-<tr><td class="first" data-label="分类">航班</td><td class="" data-label="内容">23:55 羽田起飞，目标 22:00 前到 T3</td><td class="" data-label="补充">实际计划 21:55 到，余约 2 小时</td></tr>
-<tr><td class="first" data-label="分类">末班车核查</td><td class="" data-label="内容">江ノ電 江ノ島→藤沢 末班约22:20（实际17:20走，余5h）</td><td class="" data-label="补充">总武快速 龟户→品川 末班约00:10前后、京急 品川→羽田 末班约23:55（实际21:40走，余2h+）</td></tr>
-<tr><td class="first" data-label="分类">预算合计</td><td class="" data-label="内容">交通约3,900円 + 水族馆2,800円 + 三餐自理</td><td class="" data-label="补充">全程 IC 卡（Suica/PASMO）即可</td></tr>
-<tr><td class="first" data-label="分类">巡礼礼仪</td><td class="" data-label="内容">学校⑩只在正门外拍照绝不进入；踏切/路口不在车道内停留；住宅区保持安静；不长时间占位</td><td class="" data-label="补充">攻略原文官方提醒；江ノ島住宅街/神社境内保持安静，展望塔上拍照快进快出</td></tr>
-<tr><td class="first" data-label="分类">备选①</td><td class="" data-label="内容">不走龟户、直接回羽田：品川站周边晚餐 19:30–20:30</td><td class="" data-label="补充">→ 21:30 前到羽田，同样从容</td></tr>
-<tr><td class="first" data-label="分类">备选②</td><td class="" data-label="内容">雨天/体力不足：跳过登岛⑱，水族馆后 15:30 直接回程</td><td class="" data-label="补充">可提前到羽田休息</td></tr>
-<tr><td class="first" data-label="分类">末班兜底</td><td class="" data-label="内容">万一误车：龟户→羽田 打车约 30–40 分/6,000–8,000円，23:00 前出发仍来得及</td><td class="" data-label="补充">兜底方案，别走到这步</td></tr>
-</tbody></table></div></section>
-<section id="s4" class="hidden"><h2>✅ 预约清单</h2>
-<div class="sheet-title">需提前预约/购票事项  ×  无需预约事项  ×  行前检查</div>
-<div class="tablewrap"><table>
-<thead><tr><th>事项</th><th>是否必须</th><th>预约方式</th><th>时限建议</th><th>说明</th></tr></thead>
-<tbody>
-<tr><td class="first" data-label="事项">羽田 23:55 航班值机/行李</td><td class="" data-label="是否必须">必须（已定）</td><td class="" data-label="预约方式">航空公司官网/APP</td><td class="" data-label="时限建议">国际线提前2小时到 T3，即 22:00 前</td><td class="" data-label="说明">本表 21:55 到达，刚好达标</td></tr>
-<tr><td class="first" data-label="事项">新江ノ島水族館门票</td><td class="" data-label="是否必须">非必须（推荐）</td><td class="" data-label="预约方式">官网 www.enosui.com 网络票 / KKday 中文购票入口</td><td class="" data-label="时限建议">无需选时段，可当天窗口买；周末排队10–20分，提前购票可免排队</td><td class="" data-label="说明">成人2,800円；11月最后入场16:00，14:15入场无压力</td></tr>
-<tr><td class="first" data-label="事项">江ノ电一日券 のりおりくん</td><td class="" data-label="是否必须">无需预约</td><td class="" data-label="预约方式">纸质版=首选（留作纪念）：藤沢站江ノ电检票口当天购买；EMot APP 电子版仅作排队兜底</td><td class="" data-label="时限建议">—</td><td class="" data-label="说明">800円；周日检票口可能有排队，赶上 11:00 班即买即上，赶不上就坐 11:12 班不影响后续</td></tr>
-<tr><td class="first" data-label="事项">餐饮（デニーズ/しらす丼/龟户）</td><td class="" data-label="是否必须">无需预约</td><td class="" data-label="预约方式">到店</td><td class="" data-label="时限建议">デニーズ7:00营业；とびっちょ周末约排队30–60分；龟户ホルモン横丁人气店晚间可能排队，到店再选</td><td class="" data-label="说明">晚餐时段 85 分，余量充足</td></tr>
-<tr><td class="first" data-label="事项">孤独摇滚 江ノ島圣地（S1E8）</td><td class="" data-label="是否必须">无需预约</td><td class="" data-label="预约方式">随青ブタ登岛动线顺访</td><td class="" data-label="时限建议">—</td><td class="" data-label="说明">弁天桥/江島神社/龙恋の鐘/Sea Candle 与青ブタ完全同点，零额外时间成本；详见「孤独摇滚圣地」Sheet</td></tr>
-<tr><td class="first" data-label="事项">アニメイト藤沢（立牌/周边）</td><td class="" data-label="是否必须">无需预约</td><td class="" data-label="预约方式">直接到店（10:00 开门）</td><td class="" data-label="时限建议">行程已排 10:40–10:55</td><td class="" data-label="说明">南口ドン・キホーテ藤沢駅南口店5F，营业10:00–20:00；买好立牌下午各圣地合影用，剧场版联动商品周末可能限购</td></tr>
-<tr><td class="first" data-label="事项">青ブタ号搭乘</td><td class="" data-label="是否必须">无需预约</td><td class="" data-label="预约方式">普通乘车即可</td><td class="" data-label="时限建议">—</td><td class="" data-label="说明">哪班是青ブタ号当天才知道，拍到即赚到；联动持续至11/30前后</td></tr>
-<tr><td class="first" data-label="事项">住宿→住吉站 步行路线</td><td class="" data-label="是否必须">行前确认</td><td class="" data-label="预约方式">Google Maps 模拟走一遍</td><td class="" data-label="时限建议">出发前一晚</td><td class="" data-label="说明">15分路线注意夜间照明</td></tr>
-<tr><td class="first" data-label="事项">Suica/PASMO 余额</td><td class="" data-label="是否必须">行前检查</td><td class="" data-label="预约方式">交通IC卡充值 ≥4,000円</td><td class="" data-label="时限建议">出发前</td><td class="" data-label="说明">全天交通+水族馆+餐饮备用</td></tr>
-<tr><td class="first" data-label="事项">天气确认</td><td class="" data-label="是否必须">行前检查</td><td class="" data-label="预约方式">tenki.jp 湘南区域</td><td class="" data-label="时限建议">周六晚</td><td class="" data-label="说明">雨天启用「说明与备选」页备选②</td></tr>
-<tr><td class="first" data-label="事项">手机电量/移动电源</td><td class="" data-label="是否必须">行前检查</td><td class="" data-label="预约方式">—</td><td class="" data-label="时限建议">出发前</td><td class="" data-label="说明">全天拍照巡礼耗电快，羽田段需留电出示机票</td></tr>
-</tbody></table></div></section>
-<section id="s5" class="hidden"><h2>🎸 孤独摇滚圣地</h2>
-<div class="sheet-title">《ぼっち・ざ・ろっく》江ノ島·湘南沿线圣地 × 青ブタ行程顺路点（S1E8 修学旅行+Live 后回程）</div>
-<div class="tablewrap"><table>
-<thead><tr><th>优先</th><th>地点</th><th>出场</th><th>本次安排</th><th>说明 / 拍摄要点</th><th></th></tr></thead>
-<tbody>
-<tr><td class="star3 first" data-label="优先">★★★</td><td class="" data-label="地点">弁天桥（江の島弁天橋）</td><td class="" data-label="出场">S1E8 开头 连接岛与海岸的桥</td><td class="ok" data-label="本次安排">✓ 16:00 登岛必经，零成本</td><td class="" data-label="说明 / 拍摄要点">与青ブタ圣地⑰完全同点；桥上以岛为背景拍照 = 动画同构</td><td class="empty" data-label=""></td></tr>
-<tr><td class="star3 first" data-label="优先">★★★</td><td class="" data-label="地点">江島神社（参道·大鳥居·奉安殿）</td><td class="" data-label="出场">S1E8 波奇一行观光主场景；日本三大弁财天之一</td><td class="ok" data-label="本次安排">✓ 16:00–17:00 与青ブタ圣地⑱同路线</td><td class="" data-label="说明 / 拍摄要点">参道商店街、大鳥居、登山台阶都在动画里；波奇被鸽子吓到的场景就在参道</td><td class="empty" data-label=""></td></tr>
-<tr><td class="star3 first" data-label="优先">★★★</td><td class="" data-label="地点">江ノ島シーキャンドル（展望灯台）</td><td class="" data-label="出场">S1E8 结尾重头戏：波奇第一次主动邀人同行 = 个人成长名场面</td><td class="ok" data-label="本次安排">✓ 16:30 前后（顺看16:40日落）</td><td class="" data-label="说明 / 拍摄要点">与青ブタ展望台同点；サミュエル・コッキング苑内，展望台约500円。动画中『一起看下去吧』场景原型</td><td class="empty" data-label=""></td></tr>
-<tr><td class="star2 first" data-label="优先">★★</td><td class="" data-label="地点">江ノ島エスカー（户外扶梯）</td><td class="" data-label="出场">S1E8 一行乘扶梯上山</td><td class="" data-label="本次安排">可选 360円/程，赶时间步行</td><td class="" data-label="说明 / 拍摄要点">日本首个户外电动扶梯；动画里有出现，乘上即还原，不乘也能看到乘降口</td><td class="empty" data-label=""></td></tr>
-<tr><td class="star2 first" data-label="优先">★★</td><td class="" data-label="地点">龙恋の鐘</td><td class="" data-label="出场">S1E8 附近景点（サミュエル・コッキング苑侧下山道）</td><td class="ok" data-label="本次安排">✓ 已在青ブタ路线内</td><td class="" data-label="说明 / 拍摄要点">与青ブタ同点；恋爱铃景点，动画中作为岛上散步画面出现</td><td class="empty" data-label=""></td></tr>
-<tr><td class="star2 first" data-label="优先">★★</td><td class="" data-label="地点">片瀬海岸（西浜）</td><td class="" data-label="出场">S1E8 海边玩耍 + ED 镜头</td><td class="ok" data-label="本次安排">✓ 14:15 水族馆前顺路</td><td class="" data-label="说明 / 拍摄要点">与青ブタ圣地⑯同点；沙滩上以江ノ島为背景 = 动画海岸镜头</td><td class="empty" data-label=""></td></tr>
-<tr><td class="first" data-label="优先">★</td><td class="" data-label="地点">岩屋（洞窟）</td><td class="" data-label="出场">S1E8 有出现洞窟场景的可能（未完全对应）</td><td class="" data-label="本次安排">时间富余才去（往返约30分+入洞票）</td><td class="" data-label="说明 / 拍摄要点">17:20 下岛前时间不够则舍；不构成主线</td><td class="empty" data-label=""></td></tr>
-<tr><td class="first" data-label="优先">★</td><td class="" data-label="地点">あさひ本店（たこせんべい）</td><td class="" data-label="出场">S1E8 波奇买章鱼仙贝、被烤章鱼吓到的店原型</td><td class="" data-label="本次安排">顺路买一张当零食</td><td class="" data-label="说明 / 拍摄要点">参道入口附近；动画联动商品与店章鱼仙贝都值得一试</td><td class="empty" data-label=""></td></tr>
-<tr><td class="first" data-label="优先">★</td><td class="" data-label="地点">こけら居酒屋（S1E8 庆功宴店原型·实为下北沢）</td><td class="" data-label="出场">S1E8 结尾庆功宴（原型店在下北沢，非江ノ島）</td><td class="" data-label="本次安排">不安排</td><td class="" data-label="说明 / 拍摄要点">若非要顺访需绕路下北沢，放弃；江ノ島段以 S1E8 观光路线为准</td><td class="empty" data-label=""></td></tr>
-<tr><td class="first" data-label="优先">路线</td><td class="" data-label="地点">完全复用青ブタ动线：片瀬海岸(14:15前) → 弁天桥(16:00) → 参道大鳥居 → 江島神社 → エスカー(可选) → 龙恋の鐘 → Sea Candle 展望台(16:30, 日落16:40) → 17:20 下岛</td><td class="empty" data-label="出场"></td><td class="empty" data-label="本次安排"></td><td class="" data-label="说明 / 拍摄要点">零绕路：全部孤独摇滚点 = 青ブタ点，同点双打卡；赶时间可舍 ★ 档</td><td class="empty" data-label=""></td></tr>
-<tr><td class="first" data-label="优先">背景</td><td class="" data-label="地点">孤独摇滚 S1E8「ぼっち・ざ・ろっく」：暑假最后一天，结束バンド 4 人被拉去江ノ島观光 → 神社 → 海边 → 展望台看日落；剧情与青ブタ的湘南夏空高度同源</td><td class="empty" data-label="出场"></td><td class="empty" data-label="本次安排"></td><td class="" data-label="说明 / 拍摄要点">参考：cdjapan.co.jp/feature/The-Real-Life-Locations-Of-Bocchi-The-Rock-Anime-Series、anitabi.jp、aurakaze.blog 巡礼记</td><td class="empty" data-label=""></td></tr>
-</tbody></table></div></section>
-<footer>由 gen_aobuta_html.py 从 Excel 自动生成 · 数据与 xlsx 同步 · 点顶部标签切换板块</footer>
-<script>
-(function () {
-  var links = Array.prototype.slice.call(document.querySelectorAll('nav a'));
-  var sections = Array.prototype.slice.call(document.querySelectorAll('section'));
-  var activeId = null;
-  function show(id, scroll) {
-    var changed = activeId !== id;
-    sections.forEach(function (s) { s.classList.toggle('hidden', s.id !== id); });
-    links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-s') === id); });
-    activeId = id;
-    if (scroll && changed) window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  links.forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      e.preventDefault();
-      var id = a.getAttribute('data-s');
-      show(id, true);
-      try { history.replaceState(null, '', '#' + id); } catch (err) {}
-    });
-  });
-  var hash = (location.hash || '').replace('#', '');
-  var valid = sections.some(function (s) { return s.id === hash; });
-  show(valid ? hash : sections[0].id, false);
+  <header>
+    <h1>fhlm 的静态页面集</h1>
+    <p>各类自托管小页面，点击卡片进入</p>
+  </header>
 
-  var modal = document.getElementById('modal');
-  var mTitle = document.getElementById('m-title');
-  var mBody = document.getElementById('m-body');
-  function openModal(tr) {
-    var tds = Array.prototype.slice.call(tr.querySelectorAll('td'));
-    var title = tds[0].textContent.trim();
-    var start = 1;
-    if (tds.length > 1) {
-      var v1 = tds[1].textContent.trim();
-      if (v1 && v1.length <= 30) { title += ' · ' + v1; start = 2; }
-    }
-    var out = '';
-    tds.forEach(function (td, i) {
-      if (i < start) return;
-      var v = td.textContent.trim();
-      if (!v) return;
-      out += '<div class="m-field"><div class="m-label">' + (td.getAttribute('data-label') || '') +
-             '</div><div class="m-val">' + v.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</div></div>';
-    });
-    if (!out) out = '<div class="m-val">（本行无附加说明）</div>';
-    mTitle.textContent = title;
-    mBody.innerHTML = out;
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal() {
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  Array.prototype.slice.call(document.querySelectorAll('tbody tr')).forEach(function (tr) {
-    tr.addEventListener('click', function () { openModal(tr); });
-  });
-  document.getElementById('m-close').addEventListener('click', closeModal);
-  modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+  <div class="grid">
+    <a class="card" href="aobuta/">
+      <div class="icon">🎞️</div>
+      <h2>青ブタ × 孤独摇滚 圣地巡礼</h2>
+      <p>2026-11-22 湘南·江ノ島巡礼时间表：住吉出发，藤沢→七里ヶ浜→江ノ島→龟户→羽田，双作品 29+ 圣地打卡。</p>
+      <span class="tag">2026-11-22</span>
+    </a>
+    <!-- 新页面卡片加在这行注释下面 -->
+  </div>
 
-  var fab = document.getElementById('fab-now');
-  var rows = Array.prototype.slice.call(document.querySelectorAll('tr[data-start]'));
-  function toMin(s) { var p = s.split(':'); return parseInt(p[0], 10) * 60 + parseInt(p[1], 10); }
-  function nowMin() { var d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
-  function fmtNow() { var d = new Date(); return ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2); }
-  function targetRow() {
-    var m = nowMin(), cur = null, i;
-    for (i = 0; i < rows.length; i++) {
-      var s = toMin(rows[i].getAttribute('data-start'));
-      var e = rows[i].getAttribute('data-end');
-      e = e ? toMin(e) : s + 45;
-      if (s <= m && m < e) cur = rows[i];
-    }
-    if (cur) return cur;
-    for (i = 0; i < rows.length; i++) {
-      if (toMin(rows[i].getAttribute('data-start')) > m) return rows[i];
-    }
-    return rows.length ? rows[rows.length - 1] : null;
-  }
-  function markNow() {
-    rows.forEach(function (r) { r.classList.remove('now'); });
-    var tr = targetRow();
-    if (tr) tr.classList.add('now');
-  }
-  function locateNow() {
-    show('s1', false);
-    var tr = targetRow();
-    if (!tr) return;
-    setTimeout(function () {
-      tr.scrollIntoView({ block: 'center', behavior: 'smooth' });
-      tr.classList.remove('flash'); void tr.offsetWidth; tr.classList.add('flash');
-    }, 180);
-  }
-  fab.addEventListener('click', locateNow);
-  function tick() { fab.textContent = '📍 ' + fmtNow() + ' 现在'; }
-  tick();
-  markNow();
-  setInterval(function () { tick(); markNow(); }, 30000);
-})();
-</script>
+  <footer>© 2026 fhlm · powered by GitHub Pages</footer>
 </body>
 </html>
