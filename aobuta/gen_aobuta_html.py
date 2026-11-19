@@ -329,7 +329,7 @@ footer {{ text-align:center; color:#8ea1b5; font-size:11.5px; padding:18px 0 cal
   <div class="hx">
     <div class="hx-tag">2026-11-22（周日）</div>
     <h1>青ブタ × 孤独摇滚<br>圣地巡礼时间表</h1>
-    <p>住吉 07:00 出发 → 藤沢 → 七里ヶ浜 → 江ノ島 日落 → 龟户晚餐<br>✈ 羽田 T3 · 23:55 起飞 · 21:55 前到达</p>
+    <p>住吉 07:00 出发 → 藤沢 → 七里ヶ浜 → 江ノ島 日落 → 辻堂夜景晚餐<br>✈ 羽田 T3 · 23:55 起飞 · 21:40 前到达</p>
   </div>
   <div class="wave"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,42 C240,68 480,12 760,32 C1000,48 1220,16 1440,44 L1440,70 L0,70 Z" fill="#f2f5fa"/></svg></div>
 </header>
