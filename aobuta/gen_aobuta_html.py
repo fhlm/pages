@@ -51,6 +51,19 @@ NAV_ICONS = {
     "孤独摇滚圣地": "🎸",
 }
 
+# 作品归属识别：按整行文本关键词判定，卡片标题前插徽章（青ブタ=蓝 / ぼざろ=粉，双打卡点双徽章）
+AB_RE = re.compile(r"圣地|青ブタ|剧场版|祥子|翔子|咲太|麻衣|美織|峰ヶ原|SLAM DUNK|花楓")
+BZ_RE = re.compile(r"孤独摇滚|S1E8|ぼっち|波奇|虹夏|喜多|リョウ|STARRY|结束バンド")
+
+
+def badges_html(row_txt):
+    b = ""
+    if AB_RE.search(row_txt):
+        b += '<span class="wb ab">青ブタ</span>'
+    if BZ_RE.search(row_txt):
+        b += '<span class="wb bz">ぼざろ</span>'
+    return '<span class="wbs">%s</span>' % b if b else ""
+
 
 def esc(v):
     return html.escape("" if v is None else str(v))
@@ -190,10 +203,14 @@ def render_timeline_item(r, header, is_time):
             th = trans_html(str(r[2]).strip() if r[2] is not None else "", note_txt, fee, st)
             if th:
                 short = re.sub(r"（.*?）", "", str(r[2]).strip()).strip()
+                row_txt = " ".join("" if c is None else str(c) for c in r)
+                badges = badges_html(row_txt)
                 tr_attrs += ' data-title="%s %s"' % (esc(st), esc(short))
                 rail_t = '<div class="rail"><span class="t-start">%s</span></div>' % st
-                return ('<div class="%s"%s>%s<div class="card trans">%s</div></div>'
-                        % (" ".join(cls), tr_attrs, rail_t, th))
+                head = ('<div class="card-head">%s<span class="ttl">交通</span>'
+                        '<span class="chev">›</span></div>' % badges)
+                return ('<div class="%s"%s>%s<div class="card trans">%s%s</div></div>'
+                        % (" ".join(cls), tr_attrs, rail_t, head, th))
         # 额外字段（第3列起）
         for i in range(start_idx, len(r)):
             c = r[i]
@@ -248,6 +265,8 @@ def render_timeline_item(r, header, is_time):
         ttl = esc(title_parts[1])  # 时间进轨道，卡片标题=活动名
     sub_html = '<span class="sub">%s</span>' % esc(sub) if sub else ""
     chev = '<span class="chev">›</span>'
+    row_txt = " ".join("" if c is None else str(c) for c in r)
+    badges = badges_html(row_txt) if "tl" in cls else ""
 
     f_html = "".join(
         '<div class="f"><span class="fl">%s</span><span class="fv">%s</span></div>'
@@ -259,10 +278,10 @@ def render_timeline_item(r, header, is_time):
 
     return (
         '<div class="%s"%s>%s<div class="card">'
-        '<div class="card-head"><span class="ttl">%s</span>%s%s</div>'
+        '<div class="card-head">%s<span class="ttl">%s</span>%s%s</div>'
         '<div class="fields">%s</div>%s'
         "</div></div>"
-    ) % (" ".join(cls), tr_attrs, rail, ttl, sub_html, chev, f_html, chips_html)
+    ) % (" ".join(cls), tr_attrs, rail, badges, ttl, sub_html, chev, f_html, chips_html)
 
 
 def sheet_to_html(ws, timeline=False):
@@ -400,6 +419,13 @@ h2 .ico {{ width:27px; height:27px; border-radius:9px; flex:0 0 auto;
 .chip.star3 {{ color:var(--amber-ink); background:var(--amber-bg); border:1px solid var(--amber-bd); }}
 .chip.star2 {{ color:var(--purple-ink); background:var(--purple-bg); border:1px solid var(--purple-bd); }}
 .chip.warn {{ color:var(--warn-ink); background:var(--warn-bg); border:1px solid var(--warn-bd); }}
+
+/* 作品徽章：青ブタ=蓝 / ぼざろ=粉 */
+.wbs {{ display:inline-flex; gap:4px; margin-right:7px; flex:0 0 auto; }}
+.wb {{ font-size:10px; font-weight:800; padding:2px 8px; border-radius:999px; line-height:1.5;
+  letter-spacing:.3px; transform:translateY(-1px); white-space:nowrap; }}
+.wb.ab {{ color:#1d4ed8; background:#eaf2fe; border:1px solid #c9defc; }}
+.wb.bz {{ color:#db2777; background:#fdeef6; border:1px solid #f9cfe3; }}
 .hl {{ color:var(--primary-d); font-weight:800; background:#eaf2fe; padding:0 3px; border-radius:4px; }}
 .fv .hl {{ white-space:nowrap; }}
 
