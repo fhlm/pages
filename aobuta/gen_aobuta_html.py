@@ -512,7 +512,7 @@ footer {{ text-align:center; color:#8ea1b5; font-size:11.5px; padding:18px 0 cal
   <div class="hx">
     <div class="hx-tag">2026-11-22（周日）</div>
     <h1>青ブタ × 孤独摇滚<br>圣地巡礼时间表</h1>
-    <p>住吉 08:09 出发 → 藤沢 09:47 → 七里ヶ浜 → 江ノ島 日落 → 湘南モノレール → 辻堂夜景晚餐<br>✈ 羽田 T3 · 23:55 起飞 · 21:27 前到达（全部为 11/22 实查班次）</p>
+    <p>住吉 07:59 出发 → 藤沢 09:06 → 七里ヶ浜 → 江ノ島 日落 → 湘南モノレール → 辻堂夜景晚餐<br>✈ 羽田 T3 · 23:55 起飞 · 21:27 前到达（全部为 11/22 实查班次）</p>
   </div>
   <div class="wave"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,42 C240,68 480,12 760,32 C1000,48 1220,16 1440,44 L1440,70 L0,70 Z" fill="#f2f5fa"/></svg></div>
 </header>
