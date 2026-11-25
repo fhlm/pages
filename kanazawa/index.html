@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7c3aed">
+<title>金泽 · 莲之空 Link Live 行程表 2026-11-28~29</title>
+<style>
+:root {
+  --bg:#f6f4fb; --card:#fff; --ink:#241b3a; --muted:#6b6485;
+  --primary:#7c3aed; --primary-d:#5b21b6; --pink:#db2777;
+  --rail:#ddcdf7;
+  --ok-bg:#e7f8f1; --ok-ink:#0b7a4b; --ok-bd:#bfe9d7;
+  --amber-bg:#fef3df; --amber-ink:#93620a; --amber-bd:#f4dfae;
+  --warn-bg:#fdecef; --warn-ink:#b3123f; --warn-bd:#f7c6d2;
+  --radius:16px;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",sans-serif;
+  font-size:14.5px; -webkit-text-size-adjust:100%; }
+.page { max-width:760px; margin:0 auto; padding-bottom:56px; }
+
+/* ---------- header ---------- */
+header { position:relative; background:linear-gradient(140deg,#3b0f70 0%,#7c3aed 48%,#db2777 115%);
+  color:#fff; padding:26px 20px 46px; overflow:hidden; }
+header::before { content:''; position:absolute; right:-70px; top:-70px; width:230px; height:230px;
+  border-radius:50%; background:rgba(255,255,255,.10); }
+header::after { content:''; position:absolute; right:-30px; top:60px; width:120px; height:120px;
+  border-radius:50%; background:rgba(255,255,255,.08); }
+.hx-tag { display:inline-block; font-size:12px; font-weight:700; letter-spacing:.5px;
+  background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35);
+  padding:4px 12px; border-radius:999px; margin-bottom:12px; }
+header h1 { margin:0; font-size:22px; line-height:1.4; font-weight:800; letter-spacing:.5px;
+  text-shadow:0 2px 8px rgba(59,15,112,.35); }
+header p { margin:10px 0 0; font-size:12.5px; opacity:.92; line-height:1.6; }
+.wave { position:absolute; left:0; right:0; bottom:-1px; line-height:0; }
+.wave svg { width:100%; height:32px; display:block; }
+
+/* ---------- nav ---------- */
+nav { position:sticky; top:0; z-index:20; background:rgba(255,255,255,.9);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid #eae4f5; }
+.navin { display:flex; gap:8px; overflow-x:auto; padding:10px 14px; scrollbar-width:none; }
+.navin::-webkit-scrollbar { display:none; }
+nav a { flex:0 0 auto; padding:7px 13px; font-size:13px; font-weight:700; color:#5b4a80;
+  text-decoration:none; white-space:nowrap; background:#fff; border:1px solid #e6dff5;
+  border-radius:999px; transition:all .15s; }
+nav a.active { background:linear-gradient(135deg,var(--primary-d),var(--pink)); color:#fff;
+  border-color:transparent; box-shadow:0 3px 10px rgba(124,58,237,.35); }
+nav a .today-dot { display:inline-block; width:7px; height:7px; border-radius:50%;
+  background:#22c55e; margin-left:5px; vertical-align:middle; box-shadow:0 0 4px #22c55e; }
+
+/* ---------- sections ---------- */
+section { padding:16px 14px 4px; scroll-margin-top:64px; }
+h2 { display:flex; align-items:center; gap:9px; font-size:16px; font-weight:800; color:#2b1655;
+  margin:2px 0 12px; }
+h2 .ico { width:27px; height:27px; border-radius:9px; flex:0 0 auto;
+  background:linear-gradient(135deg,var(--primary-d),var(--pink)); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:14px; }
+
+/* ---------- 硬纪律 ---------- */
+.rules { display:grid; gap:10px; margin-bottom:12px; }
+.rule { border-radius:var(--radius); padding:13px 14px; background:var(--warn-bg);
+  border:1px solid var(--warn-bd); }
+.rule b { color:var(--warn-ink); font-size:13.5px; display:flex; gap:7px; align-items:baseline; }
+.rule b .no { flex:0 0 auto; width:20px; height:20px; border-radius:50%; background:var(--warn-ink);
+  color:#fff; font-size:12px; display:inline-flex; align-items:center; justify-content:center;
+  transform:translateY(3px); }
+.rule p { margin:7px 0 0 27px; font-size:12.5px; color:#7a4a58; line-height:1.65; }
+
+/* ---------- 时间轴 ---------- */
+.timeline { position:relative; margin:4px 0 10px; padding-left:20px; }
+.timeline::before { content:''; position:absolute; left:6px; top:8px; bottom:8px;
+  width:3px; border-radius:3px; background:var(--rail); }
+.tl { position:relative; padding:0 0 14px; }
+.tl::before { content:''; position:absolute; left:-19px; top:8px; width:11px; height:11px;
+  border-radius:50%; background:#fff; border:3px solid var(--primary); }
+.tl.key::before { border-color:var(--pink); box-shadow:0 0 0 4px rgba(219,39,119,.15); }
+.tl .row { display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+.tl time { flex:0 0 auto; font-variant-numeric:tabular-nums; font-weight:800; font-size:14px;
+  color:var(--primary-d); background:#f1eafc; border:1px solid #e4d6f9;
+  padding:2px 9px; border-radius:8px; }
+.tl.key time { color:var(--warn-ink); background:var(--warn-bg); border-color:var(--warn-bd); }
+.tl .tt { font-weight:700; font-size:14px; }
+.tl .badge { font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px; }
+.b-train { background:var(--ok-bg); color:var(--ok-ink); border:1px solid var(--ok-bd); }
+.b-fly { background:#e8f1fe; color:#1d4ed8; border:1px solid #c7dbf7; }
+.b-live { background:var(--purple-bg,#f1e9fd); color:#6d3fc4; border:1px solid #e2d4fa; }
+.b-walk { background:#f1f5f9; color:#475569; border:1px solid #e2e8f0; }
+.tl p { margin:6px 0 0; font-size:12.5px; color:var(--muted); line-height:1.7; }
+.tl p b { color:var(--ink); }
+.tl .warn { margin:7px 0 0; font-size:12px; color:var(--warn-ink); background:var(--warn-bg);
+  border:1px solid var(--warn-bd); border-radius:10px; padding:7px 10px; line-height:1.65; }
+.tl .tip { margin:7px 0 0; font-size:12px; color:#7a5d10; background:var(--amber-bg);
+  border:1px solid var(--amber-bd); border-radius:10px; padding:7px 10px; line-height:1.65; }
+
+/* ---------- 票务卡 ---------- */
+.tickets { display:grid; gap:10px; }
+.tk { background:var(--card); border:1px solid #eae4f5; border-radius:var(--radius);
+  padding:13px 14px; box-shadow:0 1px 6px rgba(59,15,112,.05); }
+.tk .top { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.tk .no { font-size:11px; font-weight:800; letter-spacing:.4px; padding:3px 9px;
+  border-radius:999px; color:#fff; }
+.tk.fly .no { background:linear-gradient(135deg,#1d4ed8,#38bdf8); }
+.tk.train .no { background:linear-gradient(135deg,#0b7a4b,#34d399); }
+.tk.live .no { background:linear-gradient(135deg,var(--primary-d),var(--pink)); }
+.tk .rt { font-weight:800; font-size:14.5px; }
+.tk .seg { display:flex; align-items:center; gap:8px; margin-top:9px; font-size:13.5px;
+  font-variant-numeric:tabular-nums; }
+.tk .seg .arrow { color:#b9aed6; }
+.tk .seg b { font-size:15px; }
+.tk .sub { margin-top:7px; font-size:12px; color:var(--muted); line-height:1.6; }
+.tk .st { margin-left:auto; font-size:11px; font-weight:700; color:var(--ok-ink);
+  background:var(--ok-bg); border:1px solid var(--ok-bd); padding:2px 8px; border-radius:999px; }
+
+/* ---------- 风险表 ---------- */
+.risk { display:grid; gap:10px; }
+.rk { background:var(--card); border:1px solid #eae4f5; border-radius:var(--radius);
+  padding:12px 14px; }
+.rk .h { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.rk .h b { font-size:13.5px; }
+.rk .p { font-size:11px; font-weight:700; padding:2px 9px; border-radius:999px; }
+.p-hi { background:var(--warn-bg); color:var(--warn-ink); border:1px solid var(--warn-bd); }
+.p-mid { background:var(--amber-bg); color:#93620a; border:1px solid var(--amber-bd); }
+.p-low { background:var(--ok-bg); color:var(--ok-ink); border:1px solid var(--ok-bd); }
+.rk p { margin:7px 0 0; font-size:12.5px; color:var(--muted); line-height:1.7; }
+.rk p b { color:var(--ink); }
+
+/* ---------- 待办 ---------- */
+.todo { display:grid; gap:9px; }
+.td { display:flex; gap:10px; background:var(--card); border:1px solid #eae4f5;
+  border-radius:14px; padding:11px 13px; }
+.td .cb { flex:0 0 auto; width:20px; height:20px; margin-top:1px; border:2px solid #c9bcec;
+  border-radius:6px; }
+.td p { margin:0; font-size:13px; line-height:1.65; }
+.td p b { color:var(--primary-d); }
+.td p .s { display:block; font-size:12px; color:var(--muted); margin-top:3px; }
+
+footer { margin-top:26px; text-align:center; font-size:11.5px; color:#9a92b5; line-height:1.8; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <span class="hx-tag">LINK LIVE DREAM ～おいでよ！石川大観光Ⅱ～</span>
+  <h1>金泽 · 莲之空 Link Live<br>双日行程表</h1>
+  <p>2026-11-28（土）～ 11-29（日）<br>石川県産業展示館 4号館 · 金泽站往返新干线 · 羽田红眼回国</p>
+  <div class="wave"><svg viewBox="0 0 1440 32" preserveAspectRatio="none"><path d="M0,32 L0,16 C240,0 480,32 720,16 C960,0 1200,32 1440,16 L1440,32 Z" fill="#f6f4fb"/></svg></div>
+</header>
+
+<nav><div class="navin">
+  <a href="#rules" class="active">硬纪律</a>
+  <a href="#tickets">票务</a>
+  <a href="#day1">Day 1（土）<span id="dot1"></span></a>
+  <a href="#day2">Day 2（日）<span id="dot2"></span></a>
+  <a href="#risk">风险对策</a>
+  <a href="#todo">待办</a>
+</div></nav>
+
+<!-- ============ 硬纪律 ============ -->
+<section id="rules">
+  <h2><span class="ico">⛔</span>三条硬纪律</h2>
+  <div class="rules">
+    <div class="rule">
+      <b><span class="no">1</span>周六：住吉休整 35 分钟硬上限</b>
+      <p>06:55 落地成田 → 10:48 新干线，全程仅 3h53m。入境+进城约 1h40m，休整最多 35 分钟（放东西+快冲，设闹钟），住吉→东京站最后一段<b>直接打车</b>。</p>
+    </div>
+    <div class="rule">
+      <b><span class="no">2</span>周日：18:10 无论演到哪首歌，从座位撤</b>
+      <p>终演预计 18:15–18:45，但 19:21 新干线发车、22:55 羽田值机截止，链路零冗余。安可就不要了，撤退时间不松动。</p>
+    </div>
+    <div class="rule">
+      <b><span class="no">3</span>周日没有时间回住吉取行李</b>
+      <p>21:56 到东京后直奔羽田，绕路取行李必错过 22:55 截止。周六早上只留「周日之后不需要的东西」，去金泽的必需品全部随身带走。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 票务 ============ -->
+<section id="tickets">
+  <h2><span class="ico">🎟️</span>票务总览</h2>
+  <div class="tickets">
+    <div class="tk fly">
+      <div class="top"><span class="no">UO854</span><span class="rt">香港快运 · 去程</span><span class="st">已购</span></div>
+      <div class="seg"><b>02:00</b> 香港国际 T2 <span class="arrow">→</span> <b>06:55</b> 东京成田 T2</div>
+      <div class="sub">11-28（土）· 落地后入境+取行李预算 50 分钟</div>
+    </div>
+    <div class="tk train">
+      <div class="top"><span class="no">かがやき 529</span><span class="rt">北陆新干线 · 去程</span><span class="st">已确认</span></div>
+      <div class="seg"><b>10:48</b> 东京站 <span class="arrow">→</span> <b>13:19</b> 金泽</div>
+      <div class="sub">11-28（土）· 全程指定席；超 160cm 行李需特大行李放置席</div>
+    </div>
+    <div class="tk train">
+      <div class="top"><span class="no">かがやき 516</span><span class="rt">北陆新干线 · 回程</span><span class="st">已出票</span></div>
+      <div class="seg"><b>19:21</b> 金泽 <span class="arrow">→</span> <b>21:56</b> 东京站</div>
+      <div class="sub">11-29（日）· 11 月底北陆有降雪晚点风险，晚点&gt;15 分钟东京站直接打车去羽田</div>
+    </div>
+    <div class="tk fly">
+      <div class="top"><span class="no">UO623</span><span class="rt">香港快运 · 回程（红眼）</span><span class="st">已购</span></div>
+      <div class="seg"><b>23:55</b> 东京羽田 T3 <span class="arrow">→</span> <b>04:15<sup>+1</sup></b> 香港国际 T1</div>
+      <div class="sub">11-29（日）· 柜台/托运截止 ≈ 22:55（起飞前 60 分）、自助值机亭 22:40（前 75 分）</div>
+    </div>
+    <div class="tk live">
+      <div class="top"><span class="no">LIVE</span><span class="rt">蓮ノ空スクールアイドルクラブ</span></div>
+      <div class="seg">石川県産業展示館 <b>4号館</b></div>
+      <div class="sub">Day.1 11-28（土）15:30 開場 / 16:30 開演<br>Day.2 11-29（日）14:30 開場 / 15:30 開演</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Day 1 ============ -->
+<section id="day1">
+  <h2><span class="ico">🌅</span>Day 1 · 11-28（土）极限通勤日</h2>
+  <div class="timeline">
+    <div class="tl">
+      <div class="row"><time>02:00</time><span class="tt">UO854 香港起飞</span><span class="badge b-fly">✈ 航班</span></div>
+    </div>
+    <div class="tl">
+      <div class="row"><time>06:55</time><span class="tt">抵达成田 T2</span><span class="badge b-fly">✈ 航班</span></div>
+      <p>入境 + 取行李预算 50 分钟，<b>07:45 前必须走出到达厅</b>。</p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>07:50</time><span class="tt">成田 → 住吉</span><span class="badge b-walk">🚃 电车</span></div>
+      <p>首选：京成线（押上・浅草线直通，约 55 分）→ 押上 → 半藏门线 1 站 → 住吉，全程约 70 分钟。备选：N'EX → 东京站（贵但稳）。京成土休早班：6:13 快特 / 6:30 / 6:59 / 7:22，之后约 20–30 分钟一班；不买特急券就等免费「快速」（同样经押上直通浅草线）。</p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>09:05</time><span class="tt">住吉站 → 步行 15 分</span><span class="badge b-walk">🚶 步行</span></div>
+      <p>约 09:20 到休整点（住吉站 B1 出口步行 15 分圈内）。</p>
+    </div>
+    <div class="tl key">
+      <div class="row"><time>09:20–09:55</time><span class="tt">行李放置 + 休整</span><span class="badge" style="background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-bd)">⏱ 35 分钟上限</span></div>
+      <p>只留「周日之后不需要的东西」，去金泽的必需品随身带走。<b>设闹钟，09:55 必须出门。</b></p>
+    </div>
+    <div class="tl key">
+      <div class="row"><time>09:55</time><span class="tt">住吉 → 东京站</span><span class="badge" style="background:#e8f1fe;color:#1d4ed8;border:1px solid #c7dbf7">🚕 打车</span></div>
+      <p>打车约 10 分钟 / ¥1,800；地铁备选：半藏门线住吉→大手町 9 分 + 步行 10 分，共约 25 分钟。</p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>10:30</time><span class="tt">到新干线检票口</span></div>
+      <p>留 15–20 分钟余量，进站前买好早餐饮料。</p>
+    </div>
+    <div class="tl key">
+      <div class="row"><time>10:48–13:19</time><span class="tt">かがやき 529 → 金泽</span><span class="badge b-train">🚄 新干线</span></div>
+      <p>延误预案：航班晚点 &gt;30 分 → 跳过休整直接 N'EX 到东京站；还赶不上 → SmartEX / 售票机免费改签下一班（约 1 小时后），15:30 前后到金泽直奔会场，放弃物贩和午餐。</p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>13:25–13:50</time><span class="tt">金泽站快速午餐</span></div>
+      <p>站内便当 / 站着吃乌冬，别坐店。</p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>13:50</time><span class="tt">打车去会场</span><span class="badge" style="background:#e8f1fe;color:#1d4ed8;border:1px solid #c7dbf7">🚕 打车</span></div>
+      <p>石川県産業展示館 4号館：约 8km / 20–25 分 / ¥3,000–3,500。若官方公布了金泽站接驳巴士优先坐巴士（免费，但留意班次时刻）。</p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>14:15</time><span class="tt">到会场 · 物贩 · 入场整理</span></div>
+    </div>
+    <div class="tl">
+      <div class="row"><time>15:30 / 16:30</time><span class="tt">開場 / 開演</span><span class="badge b-live">🎤 Day.1</span></div>
+    </div>
+    <div class="tl">
+      <div class="row"><time>~19:00–19:30</time><span class="tt">终演 → 回金泽站 → 酒店</span></div>
+      <p>散场打车排队 10–20 分钟正常，今晚无硬约束。酒店建议住金泽站周边（方便明早寄存行李）。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Day 2 ============ -->
+<section id="day2">
+  <h2><span class="ico">🎤</span>Day 2 · 11-29（日）准时撤退日</h2>
+  <div class="timeline">
+    <div class="tl">
+      <div class="row"><time>08:00–10:30</time><span class="tt">金泽市区轻游</span></div>
+      <p>近江町市场早餐（约 10:00 收摊）或兼六园 / 东茶屋街二选一，别贪多。</p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>10:30</time><span class="tt">回酒店退房</span></div>
+      <p>大件行李寄存酒店前台（比站内储物柜方便，13:30 顺路取）。<b>确认：金泽带走的东西 = 全部随身，没有回程取件环节。</b></p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>12:00</time><span class="tt">金泽站周边午餐</span></div>
+      <p>提前吃完别拖。</p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>13:40</time><span class="tt">打车去会场</span><span class="badge" style="background:#e8f1fe;color:#1d4ed8;border:1px solid #c7dbf7">🚕 打车</span></div>
+      <p>14:05 到，从容入场（比 Day1 提前量更大，物贩可放这天补）。</p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>14:30 / 15:30</time><span class="tt">開場 / 開演</span><span class="badge b-live">🎤 Day.2</span></div>
+    </div>
+    <div class="tl key">
+      <div class="row"><time>18:10</time><span class="tt">⏰ 撤退时间：从座位撤</span><span class="badge" style="background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-bd)">⛔ 硬纪律</span></div>
+      <p>无论演到哪首歌。安可就不要了——19:21 的车不等人。</p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>18:15–18:20</time><span class="tt">取行李出馆</span></div>
+      <p>18:25 上<b>预约好的出租车</b>（散场排队会很久，务必提前预约）。</p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>18:50</time><span class="tt">到金泽站</span></div>
+      <p>留 31 分钟余量，进站前取回寄存行李（如寄在酒店且顺路则提前取）。</p>
+    </div>
+    <div class="tl key">
+      <div class="row"><time>19:21–21:56</time><span class="tt">かがやき 516 → 东京</span><span class="badge b-train">🚄 新干线</span></div>
+      <p>11 月底北陆有降雪晚点风险。晚点 &gt;40 分 → 基本误机，现场考虑改签更早班新干线（SmartEX 同区段变更免费）。</p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>22:05</time><span class="tt">东京站转乘 → 羽田</span><span class="badge b-walk">🚃 电车</span></div>
+      <p>首选：东海道线→品川（22:16）→ 京急快特 → 羽田 T3（约 22:40 到）；备选：山手线→滨松町→东京单轨（约 22:35 到）。<b>列车晚点 15 分以上 → 东京站直接打车</b>（约 30 分 / ¥8,000–10,000）。</p>
+    </div>
+    <div class="tl key">
+      <div class="row"><time>22:40–22:45</time><span class="tt">到羽田 T3</span></div>
+      <p>截止线：柜台/托运 ≈ <b>22:55</b>（起飞前 60 分）、自助值机亭 22:40（前 75 分）。无托运 + 已网上值机 = 23:00 前到都来得及。</p>
+    </div>
+    <div class="tl">
+      <div class="row"><time>23:55</time><span class="tt">UO623 起飞 → 周一 04:15 抵港</span><span class="badge b-fly">✈ 航班</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 风险对策 ============ -->
+<section id="risk">
+  <h2><span class="ico">🛡️</span>风险与对策</h2>
+  <div class="risk">
+    <div class="rk">
+      <div class="h"><b>周六入境/交通延误 → 赶不上 10:48</b><span class="p p-mid">概率中</span></div>
+      <p>休整 35 分钟硬上限；住吉→东京站打车；实在不行 SmartEX / 售票机<b>免费改签下一班</b>。</p>
+    </div>
+    <div class="rk">
+      <div class="h"><b>Day2 演出拖到 18:45 后才终演</b><span class="p p-mid">概率中</span></div>
+      <p><b>18:10 撤退纪律不松动</b>，安可放弃。</p>
+    </div>
+    <div class="rk">
+      <div class="h"><b>会场散场打车排队</b><span class="p p-hi">概率高</span></div>
+      <p>提前预约 <b>18:25 会场→金泽站 pickup</b>（GO app / 日本交通预约）。</p>
+    </div>
+    <div class="rk">
+      <div class="h"><b>かがやき 516 降雪晚点</b><span class="p p-low">概率低-中</span></div>
+      <p>晚点 &gt;15 分 → 东京站直接打车去羽田；晚点 &gt;40 分 → 现场改签更早班（SmartEX 免费）。</p>
+    </div>
+    <div class="rk">
+      <div class="h"><b>羽田值机截止被卡</b><span class="p p-mid">概率中</span></div>
+      <p>开放后立刻 UO App 网上值机；周日尽量只带手提行李（确认票价档位含手提额）→ 无托运时 23:00 前到 T3 均可。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 待办 ============ -->
+<section id="todo">
+  <h2><span class="ico">✅</span>出发前待办</h2>
+  <div class="todo">
+    <div class="td"><span class="cb"></span><p><b>确认金泽周六晚酒店</b><span class="s">建议金泽站周边，方便周日上午寄存行李</span></p></div>
+    <div class="td"><span class="cb"></span><p><b>预约周日 18:25 会场→金泽站出租车</b><span class="s">GO app 提前预约，全行程最值的一笔钱</span></p></div>
+    <div class="td"><span class="cb"></span><p><b>UO623 网上值机</b><span class="s">11-27 23:55 起 48h 窗口开放，开放后立刻办</span></p></div>
+    <div class="td"><span class="cb"></span><p><b>留意官方接驳巴士公告</b><span class="s">莲之空官 X / 官网；若有金泽站接驳则替代两天会场打车</span></p></div>
+    <div class="td"><span class="cb"></span><p><b>SmartEX 注册并登录 529 / 516 两张票</b><span class="s">万一改签手机直接操作，免手续费</span></p></div>
+  </div>
+</section>
+
+<footer>
+  节奏口诀：周六「极限通勤日」— 09:55 离开住吉 · 周日「准时撤退日」— 18:10 离开座位<br>
+  数据参考：京成/JR时刻表 · HK Express 值机指引 · 更新于 2026-11-25
+</footer>
+
+</div>
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav a'));
+  var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function spy(){
+    var y = window.scrollY + 90, cur = 0;
+    secs.forEach(function(s,i){ if(s && s.offsetTop <= y) cur = i; });
+    links.forEach(function(a,i){ a.classList.toggle('active', i===cur); });
+  }
+  window.addEventListener('scroll', spy, {passive:true}); spy();
+  // 当天高亮：11-28 → Day1，11-29 → Day2
+  var d = new Date(), m = d.getMonth()+1, day = d.getDate();
+  var dot1 = document.getElementById('dot1'), dot2 = document.getElementById('dot2');
+  if (m===11 && day===28 && dot1) dot1.className = 'today-dot';
+  if (m===11 && day===29 && dot2) dot2.className = 'today-dot';
+})();
+</script>
+</body>
+</html>
