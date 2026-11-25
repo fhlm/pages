@@ -24,7 +24,7 @@ body { margin:0; background:var(--bg); color:var(--ink);
 
 /* ---------- header ---------- */
 header { position:relative; background:linear-gradient(140deg,#3b0f70 0%,#7c3aed 48%,#db2777 115%);
-  color:#fff; padding:26px 20px 46px; overflow:hidden; }
+  color:#fff; padding:50px 20px 46px; overflow:hidden; }
 header::before { content:''; position:absolute; right:-70px; top:-70px; width:230px; height:230px;
   border-radius:50%; background:rgba(255,255,255,.10); }
 header::after { content:''; position:absolute; right:-30px; top:60px; width:120px; height:120px;
@@ -70,31 +70,69 @@ h2 .ico { width:27px; height:27px; border-radius:9px; flex:0 0 auto;
   transform:translateY(3px); }
 .rule p { margin:7px 0 0 27px; font-size:12.5px; color:#7a4a58; line-height:1.65; }
 
-/* ---------- 时间轴 ---------- */
-.timeline { position:relative; margin:4px 0 10px; padding-left:20px; }
-.timeline::before { content:''; position:absolute; left:6px; top:8px; bottom:8px;
-  width:3px; border-radius:3px; background:var(--rail); }
-.tl { position:relative; padding:0 0 14px; }
-.tl::before { content:''; position:absolute; left:-19px; top:8px; width:11px; height:11px;
-  border-radius:50%; background:#fff; border:3px solid var(--primary); }
-.tl.key::before { border-color:var(--pink); box-shadow:0 0 0 4px rgba(219,39,119,.15); }
-.tl .row { display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
-.tl time { flex:0 0 auto; font-variant-numeric:tabular-nums; font-weight:800; font-size:14px;
-  color:var(--primary-d); background:#f1eafc; border:1px solid #e4d6f9;
-  padding:2px 9px; border-radius:8px; }
-.tl.key time { color:var(--warn-ink); background:var(--warn-bg); border-color:var(--warn-bd); }
-.tl .tt { font-weight:700; font-size:14px; }
-.tl .badge { font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px; }
-.b-train { background:var(--ok-bg); color:var(--ok-ink); border:1px solid var(--ok-bd); }
-.b-fly { background:#e8f1fe; color:#1d4ed8; border:1px solid #c7dbf7; }
-.b-live { background:var(--purple-bg,#f1e9fd); color:#6d3fc4; border:1px solid #e2d4fa; }
-.b-walk { background:#f1f5f9; color:#475569; border:1px solid #e2e8f0; }
-.tl p { margin:6px 0 0; font-size:12.5px; color:var(--muted); line-height:1.7; }
-.tl p b { color:var(--ink); }
-.tl .warn { margin:7px 0 0; font-size:12px; color:var(--warn-ink); background:var(--warn-bg);
-  border:1px solid var(--warn-bd); border-radius:10px; padding:7px 10px; line-height:1.65; }
-.tl .tip { margin:7px 0 0; font-size:12px; color:#7a5d10; background:var(--amber-bg);
-  border:1px solid var(--amber-bd); border-radius:10px; padding:7px 10px; line-height:1.65; }
+/* ---------- 返回首页 ---------- */
+.back { position:absolute; top:14px; left:14px; z-index:2; font-size:12px; font-weight:700;
+  color:#fff; text-decoration:none; background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.35); padding:5px 12px; border-radius:999px; }
+.back:active { background:rgba(255,255,255,.30); }
+
+/* ---------- 时间轴（aobuta 样式：rail + card） ---------- */
+.tline { position:relative; padding:4px 0 8px; }
+.tline::before { content:''; position:absolute; left:28px; top:10px; bottom:14px; width:2px;
+  background:linear-gradient(180deg,var(--rail) 75%,rgba(221,205,247,.15)); border-radius:2px; }
+.itm { position:relative; display:flex; gap:12px; padding:0 0 10px; }
+.itm .rail { flex:0 0 56px; text-align:center; padding-top:10px; z-index:1; }
+.t-start { display:block; font-weight:800; font-size:12.5px; color:var(--primary-d);
+  background:#f1eafc; border:1px solid #e4d6f9; padding:4px 0; border-radius:10px;
+  font-variant-numeric:tabular-nums; }
+.itm.key .t-start { color:var(--warn-ink); background:var(--warn-bg); border-color:var(--warn-bd); }
+.t-end { display:block; font-size:10px; color:var(--muted); margin-top:3px;
+  font-variant-numeric:tabular-nums; }
+
+/* ---------- 卡片 ---------- */
+.card { flex:1; min-width:0; background:var(--card); border-radius:var(--radius);
+  border:1px solid #ece6f7; padding:12px 14px;
+  box-shadow:0 1px 3px rgba(59,15,112,.05),0 4px 14px rgba(59,15,112,.04); }
+.card-head { display:flex; align-items:baseline; gap:8px; }
+.ttl { font-weight:800; font-size:15px; line-height:1.45; color:var(--ink); word-break:break-word; }
+.sub { font-size:12px; color:var(--muted); font-weight:700; flex:0 0 auto; }
+.fields { margin-top:5px; }
+.f { font-size:13px; line-height:1.65; color:#40335f; }
+.fl { color:#8d84a8; font-size:11px; font-weight:800; letter-spacing:.3px; margin-right:7px; }
+.fl::after { content:'·'; margin-left:5px; color:#cfc7e2; font-weight:400; }
+.hl { color:var(--primary-d); font-weight:800; background:#f1eafc; padding:0 3px; border-radius:4px; }
+
+/* ---------- 交通专用卡片 ---------- */
+.card.trans { border-left:3px solid var(--primary);
+  background:linear-gradient(180deg,#f9f6ff,#fff 60%); }
+.route { display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.r-st { font-weight:800; font-size:15.5px; color:var(--ink); }
+.r-arr { color:var(--primary); font-weight:800; }
+.r-dur { font-size:11px; font-weight:800; color:var(--primary-d);
+  background:#f1eafc; padding:2px 8px; border-radius:999px; margin-left:2px; }
+.r-line { font-size:12px; color:#655d85; font-weight:700; margin-top:3px; }
+.deparr { display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-top:8px;
+  background:#fff; border:1px solid #e9defc; border-radius:10px; padding:7px 10px; }
+.da-t { font-weight:800; font-size:15px; color:var(--primary-d); font-variant-numeric:tabular-nums; }
+.da-l { font-size:10.5px; color:#8d84a8; font-weight:800; margin-left:1px; }
+.da-x { font-size:11px; color:#655d85; background:#f6f2fd; border-radius:6px; padding:1px 6px; }
+.da-arrow { color:var(--primary); font-weight:800; font-size:14px; margin:0 2px; }
+.tnote { font-size:12.5px; line-height:1.6; color:#4d4270; margin-top:7px;
+  padding-left:9px; border-left:2px solid #e4d8f6; }
+.tnote.bk { color:#948bb0; font-size:11.5px; border-left-color:#ece4f8; }
+.tnote.wn { color:var(--warn-ink); background:var(--warn-bg); border:1px solid var(--warn-bd);
+  border-left:none; border-radius:8px; padding:6px 9px; font-weight:700; }
+.tchips { margin-top:8px; display:flex; flex-wrap:wrap; gap:6px; }
+.chips { margin-top:8px; display:flex; flex-wrap:wrap; gap:6px; }
+.chip { font-size:11px; font-weight:800; padding:3px 10px; border-radius:999px; line-height:1.5;
+  color:#5e5478; background:#f3f0fa; border:1px solid #e8e2f5; }
+.chip.fare { color:var(--ok-ink); background:var(--ok-bg); border:1px solid var(--ok-bd); }
+.chip.fly { color:#1d4ed8; background:#e8f1fe; border:1px solid #c7dbf7; }
+.chip.shink { color:var(--ok-ink); background:var(--ok-bg); border:1px solid var(--ok-bd); }
+.chip.live { color:#6d3fc4; background:#f1e9fd; border:1px solid #e2d4fa; }
+.chip.taxi { color:#0e7490; background:#e0f5f9; border:1px solid #b6e2ea; }
+.chip.walk { color:#475569; background:#f1f5f9; border:1px solid #e2e8f0; }
+.chip.hard { color:var(--warn-ink); background:var(--warn-bg); border:1px solid var(--warn-bd); }
 
 /* ---------- 票务卡 ---------- */
 .tickets { display:grid; gap:10px; }
@@ -145,6 +183,7 @@ footer { margin-top:26px; text-align:center; font-size:11.5px; color:#9a92b5; li
 <div class="page">
 
 <header>
+  <a class="back" href="../">← 返回首页</a>
   <span class="hx-tag">LINK LIVE DREAM ～おいでよ！石川大観光Ⅱ～</span>
   <h1>金泽 · 莲之空 Link Live<br>双日行程表</h1>
   <p>2026-11-28（土）～ 11-29（日）<br>石川県産業展示館 4号館 · 金泽站往返新干线 · 羽田红眼回国</p>
@@ -152,6 +191,7 @@ footer { margin-top:26px; text-align:center; font-size:11.5px; color:#9a92b5; li
 </header>
 
 <nav><div class="navin">
+  <a href="../">🏠 首页</a>
   <a href="#rules" class="active">硬纪律</a>
   <a href="#tickets">票务</a>
   <a href="#day1">Day 1（土）<span id="dot1"></span></a>
@@ -214,55 +254,107 @@ footer { margin-top:26px; text-align:center; font-size:11.5px; color:#9a92b5; li
 <!-- ============ Day 1 ============ -->
 <section id="day1">
   <h2><span class="ico">🌅</span>Day 1 · 11-28（土）极限通勤日</h2>
-  <div class="timeline">
-    <div class="tl">
-      <div class="row"><time>02:00</time><span class="tt">UO854 香港起飞</span><span class="badge b-fly">✈ 航班</span></div>
+  <div class="tline">
+    <div class="itm">
+      <div class="rail"><span class="t-start">02:00</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">UO854 香港起飞</span></div>
+        <div class="fields"><div class="f"><span class="fl">航班</span><span class="fv">香港快运 · 香港国际T2 → 东京成田T2（<b class="hl">06:55</b> 着）</span></div></div>
+        <div class="chips"><span class="chip fly">✈ 航班</span></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>06:55</time><span class="tt">抵达成田 T2</span><span class="badge b-fly">✈ 航班</span></div>
-      <p>入境 + 取行李预算 35 分钟，<b>07:30 前走到京成站台</b>（赶 07:41 快速特急；晚了就改 07:53 アクセス特急，仍来得及）。</p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">06:55</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">抵达成田 T2</span></div>
+        <div class="fields"><div class="f"><span class="fl">入境</span><span class="fv">入境 + 取行李预算 <b class="hl">35 分</b>，<b class="hl">07:30</b> 前走到京成站台</span></div>
+        <div class="f"><span class="fl">衔接</span><span class="fv">赶 <b class="hl">07:41</b> 快速特急；晚了就改 <b class="hl">07:53</b> アクセス特急，仍来得及</span></div></div>
+        <div class="chips"><span class="chip fly">✈ 航班</span></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>07:41</time><span class="tt">成田 → 住吉（11-28 实查班次）</span><span class="badge b-walk">🚃 电车</span></div>
-      <p><b>07:41 京成本線快速特急（京成上野行）· 空港第2ビル 3番線</b> → 京成八幡 08:29，出站徒步 5 分 → <b>本八幡 08:38 都営新宿線（笹塚行，直通 8 駅）</b> → 住吉 08:57。约 76 分 / IC ¥1,093 / 换乘 1 次（京成八幡↔本八幡地面徒步）。备选：07:53 アクセス特急（1番線）→ 押上 08:48 → 半蔵門線 08:57 → 住吉 09:01（换乘站内完成，需另购特急券）。</p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">07:41</span></div>
+      <div class="card trans"><div class="card-head"><span class="ttl">成田 → 住吉</span><span class="sub">11-28 实查班次</span></div>
+        <div class="route"><span class="r-st">空港第2ビル</span><span class="r-arr">→</span><span class="r-st">住吉</span><span class="r-dur">76分</span></div>
+        <div class="r-line">🚃 京成本線快速特急（京成上野行）→ 都営新宿線直通</div>
+        <div class="deparr"><span class="da-t">07:41</span><span class="da-l">発</span><span class="da-x">空港第2ビル 3番線</span><span class="da-arrow">→</span><span class="da-t">08:29</span><span class="da-l">着</span><span class="da-x">京成八幡</span></div>
+        <div class="deparr"><span class="da-t">08:38</span><span class="da-l">発</span><span class="da-x">都営新宿線 笹塚行 · 直通8駅</span><span class="da-arrow">→</span><span class="da-t">08:57</span><span class="da-l">着</span><span class="da-x">住吉</span></div>
+        <div class="tnote">京成八幡 ↔ 本八幡 出站地面徒步 <b class="hl">5 分</b>，全程换乘 <b class="hl">1 次</b></div>
+        <div class="tnote bk">后备：<b class="hl">07:53</b> アクセス特急（1番線）→ 押上 <b class="hl">08:48</b> → 半蔵門線 <b class="hl">08:57</b> → 住吉 <b class="hl">09:01</b>（站内换乘完成，需另购特急券）</div>
+        <div class="tchips"><span class="chip fare">IC ¥1,093</span><span class="chip">换乘 1 次</span></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>08:57</time><span class="tt">住吉站 → 步行 15 分</span><span class="badge b-walk">🚶 步行</span></div>
-      <p>约 09:12 到休整点（住吉站 B1 出口步行 15 分圈内）。</p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">08:57</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">住吉站 → 步行至休整点</span></div>
+        <div class="fields"><div class="f"><span class="fl">步行</span><span class="fv">住吉站 B1 出口步行 <b class="hl">15 分</b>圈内，约 <b class="hl">09:12</b> 到</span></div></div>
+        <div class="chips"><span class="chip walk">🚶 步行</span></div>
+      </div>
     </div>
-    <div class="tl key">
-      <div class="row"><time>09:12–09:40</time><span class="tt">行李放置 + 休整</span><span class="badge" style="background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-bd)">⏱ 30 分钟上限</span></div>
-      <p>只留「周日之后不需要的东西」，去金泽的必需品随身带走。<b>设闹钟，09:40 必须出门</b>（步行 15 分 → 09:55 前到站台）。</p>
+    <div class="itm key">
+      <div class="rail"><span class="t-start">09:12</span><span class="t-end">09:40</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">行李放置 + 休整</span></div>
+        <div class="fields"><div class="f"><span class="fl">纪律</span><span class="fv">只留「周日之后不需要的东西」，去金泽的必需品随身带走；<b class="hl">设闹钟，09:40 必须出门</b>（步行 15 分 → 09:55 前到站台）</span></div></div>
+        <div class="tnote wn">⚠ 休整超时 = 赶不上 10:48 新干线，全链顺延</div>
+        <div class="chips"><span class="chip hard">⏱ 30 分钟上限</span></div>
+      </div>
     </div>
-    <div class="tl key">
-      <div class="row"><time>09:40</time><span class="tt">住吉 → 东京站（不打车）</span><span class="badge b-walk">🚃 电车</span></div>
-      <p><b>09:59 半蔵門線（中央林間行）· 住吉 1番線</b> → 大手町 10:09（4 駅，站内换 7番線）→ <b>10:16 丸ノ内線（荻窪行）1番線</b> → <b>东京站 10:17</b>。共 18 分 / ¥209。站外应急备选：09:59 半蔵門線→大手町 10:09 徒步 10 分直接进东京站，23 分 / ¥178，0 换乘。无论走哪条，<b>10:30 前务必站在新干线检票口</b>。</p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">09:40</span></div>
+      <div class="card trans"><div class="card-head"><span class="ttl">住吉 → 东京站（不打车）</span><span class="sub">09:55 前到站台</span></div>
+        <div class="route"><span class="r-st">住吉</span><span class="r-arr">→</span><span class="r-st">東京</span><span class="r-dur">18分</span></div>
+        <div class="r-line">🚃 半蔵門線 → 丸ノ内線</div>
+        <div class="deparr"><span class="da-t">09:59</span><span class="da-l">発</span><span class="da-x">半蔵門線 中央林間行 · 1番線</span><span class="da-arrow">→</span><span class="da-t">10:09</span><span class="da-l">着</span><span class="da-x">大手町</span></div>
+        <div class="deparr"><span class="da-t">10:16</span><span class="da-l">発</span><span class="da-x">丸ノ内線 荻窪行 · 大手町7番線→1番線</span><span class="da-arrow">→</span><span class="da-t">10:17</span><span class="da-l">着</span><span class="da-x">東京</span></div>
+        <div class="tnote">大手町站内换乘（4 駅，<b class="hl">7 分</b>）；进东京站后 <b class="hl">10:30 前务必站在新干线检票口</b></div>
+        <div class="tnote bk">应急：09:59 半蔵門線 → 大手町 <b class="hl">10:09</b> 徒步 10 分直接进东京站（23 分 / <b class="hl">¥178</b>，0 换乘）</div>
+        <div class="tchips"><span class="chip fare">¥209</span><span class="chip">换乘 1 次</span></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>10:30</time><span class="tt">到新干线检票口</span></div>
-      <p>留 15–20 分钟余量，进站前买好早餐饮料。</p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">10:30</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">到新干线检票口</span></div>
+        <div class="fields"><div class="f"><span class="fl">缓冲</span><span class="fv">留 <b class="hl">15–20 分</b>余量，进站前买好早餐饮料</span></div></div>
+      </div>
     </div>
-    <div class="tl key">
-      <div class="row"><time>10:48–13:19</time><span class="tt">かがやき 529 → 金泽</span><span class="badge b-train">🚄 新干线</span></div>
-      <p>延误预案（11-28 实查兜底班次）：航班晚点 &gt;30 分 → 跳过休整直接进城。<b>11:48 かがやき 531（22番線）→ 金沢 14:22</b>（指定席 ¥14,600）；再晚 → 12:24 はくたか 563（21番線）→ 金沢 15:17（自由席 ¥14,070）。坐 531 仍能 14:50 前到会场，開演前直奔入场，放弃物贩和午餐；SmartEX / 售票机改签免费。</p>
+    <div class="itm key">
+      <div class="rail"><span class="t-start">10:48</span><span class="t-end">13:19</span></div>
+      <div class="card trans"><div class="card-head"><span class="ttl">かがやき 529 → 金泽</span><span class="sub">北陆新干线</span></div>
+        <div class="route"><span class="r-st">東京</span><span class="r-arr">→</span><span class="r-st">金沢</span><span class="r-dur">2h31m</span></div>
+        <div class="deparr"><span class="da-t">10:48</span><span class="da-l">発</span><span class="da-x">東京駅</span><span class="da-arrow">→</span><span class="da-t">13:19</span><span class="da-l">着</span><span class="da-x">金沢駅</span></div>
+        <div class="tnote">全程指定席；超 <b class="hl">160cm</b> 行李需特大行李放置席；SmartEX / 售票机改签免费</div>
+        <div class="tnote bk">延误预案（11-28 实查兜底班次）：航班晚点 &gt;30 分 → 跳过休整直接进城；<b class="hl">11:48 かがやき 531（22番線）→ 金沢 14:22</b>（指定席 ¥14,600）；再晚 → <b class="hl">12:24 はくたか 563（21番線）→ 金沢 15:17</b>（自由席 ¥14,070）。坐 531 仍能 14:50 前到会场，開演前直奔入场，放弃物贩和午餐</div>
+        <div class="tchips"><span class="chip shink">🚄 新干线</span><span class="chip fare">指定席已确认</span></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>13:25–13:50</time><span class="tt">金泽站快速午餐</span></div>
-      <p>站内便当 / 站着吃乌冬，别坐店。</p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">13:25</span><span class="t-end">13:50</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">金泽站快速午餐</span></div>
+        <div class="fields"><div class="f"><span class="fl">安排</span><span class="fv">站内便当 / 站着吃乌冬，别坐店</span></div></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>13:50</time><span class="tt">打车去会场</span><span class="badge" style="background:#e8f1fe;color:#1d4ed8;border:1px solid #c7dbf7">🚕 打车</span></div>
-      <p>石川県産業展示館 4号館：约 8km / 20–25 分 / ¥3,000–3,500。若官方公布了金泽站接驳巴士优先坐巴士（免费，但留意班次时刻）。</p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">13:50</span></div>
+      <div class="card trans"><div class="card-head"><span class="ttl">金泽站 → 会场</span><span class="sub">打车</span></div>
+        <div class="route"><span class="r-st">金沢駅</span><span class="r-arr">→</span><span class="r-st">石川県産業展示館 4号館</span><span class="r-dur">20–25分</span></div>
+        <div class="tnote">约 <b class="hl">8km / ¥3,000–3,500</b>；若官方公布了金泽站接驳巴士优先坐巴士（免费，但留意班次时刻）</div>
+        <div class="tchips"><span class="chip taxi">🚕 打车</span></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>14:15</time><span class="tt">到会场 · 物贩 · 入场整理</span></div>
+    <div class="itm">
+      <div class="rail"><span class="t-start">14:15</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">到会场 · 物贩 · 入场整理</span></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>15:30 / 16:30</time><span class="tt">開場 / 開演</span><span class="badge b-live">🎤 Day.1</span></div>
+    <div class="itm">
+      <div class="rail"><span class="t-start">15:30</span><span class="t-end">16:30 開演</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">開場 / 開演</span><span class="chip live">🎤 Day.1</span></div>
+        <div class="fields"><div class="f"><span class="fl">演出</span><span class="fv">蓮ノ空女学院スクールアイドルクラブ Link Live Dream</span></div></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>~19:00–19:30</time><span class="tt">终演 → 回金泽站 → 酒店</span></div>
-      <p>散场打车排队 10–20 分钟正常，今晚无硬约束。酒店建议住金泽站周边（方便明早寄存行李）。</p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">~19:00</span><span class="t-end">19:30</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">终演 → 回金泽站 → 酒店</span></div>
+        <div class="fields"><div class="f"><span class="fl">安排</span><span class="fv">散场打车排队 <b class="hl">10–20 分</b>正常，今晚无硬约束；酒店建议住金泽站周边（方便明早寄存行李）</span></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -270,52 +362,91 @@ footer { margin-top:26px; text-align:center; font-size:11.5px; color:#9a92b5; li
 <!-- ============ Day 2 ============ -->
 <section id="day2">
   <h2><span class="ico">🎤</span>Day 2 · 11-29（日）准时撤退日</h2>
-  <div class="timeline">
-    <div class="tl">
-      <div class="row"><time>08:00–10:30</time><span class="tt">金泽市区轻游</span></div>
-      <p>近江町市场早餐（约 10:00 收摊）或兼六园 / 东茶屋街二选一，别贪多。</p>
+  <div class="tline">
+    <div class="itm">
+      <div class="rail"><span class="t-start">08:00</span><span class="t-end">10:30</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">金泽市区轻游</span></div>
+        <div class="fields"><div class="f"><span class="fl">安排</span><span class="fv">近江町市场早餐（约 <b class="hl">10:00</b> 收摊）或兼六园 / 东茶屋街二选一，别贪多</span></div></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>10:30</time><span class="tt">回酒店退房</span></div>
-      <p>大件行李寄存酒店前台（比站内储物柜方便，13:30 顺路取）。<b>确认：金泽带走的东西 = 全部随身，没有回程取件环节。</b></p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">10:30</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">回酒店退房</span></div>
+        <div class="fields"><div class="f"><span class="fl">行李</span><span class="fv">大件行李寄存酒店前台（比站内储物柜方便，13:30 顺路取）</span></div></div>
+        <div class="tnote wn">⚠ 确认：金泽带走的东西 = 全部随身，没有回程取件环节</div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>12:00</time><span class="tt">金泽站周边午餐</span></div>
-      <p>提前吃完别拖。</p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">12:00</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">金泽站周边午餐</span></div>
+        <div class="fields"><div class="f"><span class="fl">安排</span><span class="fv">提前吃完别拖</span></div></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>13:40</time><span class="tt">打车去会场</span><span class="badge" style="background:#e8f1fe;color:#1d4ed8;border:1px solid #c7dbf7">🚕 打车</span></div>
-      <p>14:05 到，从容入场（比 Day1 提前量更大，物贩可放这天补）。</p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">13:40</span></div>
+      <div class="card trans"><div class="card-head"><span class="ttl">金泽站 → 会场</span><span class="sub">打车</span></div>
+        <div class="route"><span class="r-st">金沢駅</span><span class="r-arr">→</span><span class="r-st">石川県産業展示館 4号館</span><span class="r-dur">20–25分</span></div>
+        <div class="tnote"><b class="hl">14:05</b> 到，从容入场（比 Day1 提前量更大，物贩可放这天补）</div>
+        <div class="tchips"><span class="chip taxi">🚕 打车</span></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>14:30 / 15:30</time><span class="tt">開場 / 開演</span><span class="badge b-live">🎤 Day.2</span></div>
+    <div class="itm">
+      <div class="rail"><span class="t-start">14:30</span><span class="t-end">15:30 開演</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">開場 / 開演</span><span class="chip live">🎤 Day.2</span></div>
+        <div class="fields"><div class="f"><span class="fl">演出</span><span class="fv">蓮ノ空女学院スクールアイドルクラブ Link Live Dream</span></div></div>
+      </div>
     </div>
-    <div class="tl key">
-      <div class="row"><time>18:10</time><span class="tt">⏰ 撤退时间：从座位撤</span><span class="badge" style="background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-bd)">⛔ 硬纪律</span></div>
-      <p>无论演到哪首歌。安可就不要了——19:21 的车不等人。</p>
+    <div class="itm key">
+      <div class="rail"><span class="t-start">18:10</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">⏰ 撤退时间：从座位撤</span><span class="chip hard">⛔ 硬纪律</span></div>
+        <div class="fields"><div class="f"><span class="fl">纪律</span><span class="fv">无论演到哪首歌。安可就不要了——<b class="hl">19:21</b> 的车不等人</span></div></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>18:15–18:20</time><span class="tt">取行李出馆</span></div>
-      <p>18:25 上<b>预约好的出租车</b>（散场排队会很久，务必提前预约）。</p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">18:15</span><span class="t-end">18:20</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">取行李出馆</span></div>
+        <div class="fields"><div class="f"><span class="fl">安排</span><span class="fv"><b class="hl">18:25</b> 上<b class="hl">预约好的出租车</b>（散场排队会很久，务必提前预约）</span></div></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>18:50</time><span class="tt">到金泽站</span></div>
-      <p>留 31 分钟余量，进站前取回寄存行李（如寄在酒店且顺路则提前取）。</p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">18:50</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">到金泽站</span></div>
+        <div class="fields"><div class="f"><span class="fl">缓冲</span><span class="fv">留 <b class="hl">31 分</b>余量，进站前取回寄存行李（如寄在酒店且顺路则提前取）</span></div></div>
+      </div>
     </div>
-    <div class="tl key">
-      <div class="row"><time>19:21–21:56</time><span class="tt">かがやき 516 → 东京</span><span class="badge b-train">🚄 新干线</span></div>
-      <p>11 月底北陆有降雪晚点风险。晚点 &gt;40 分 → 基本误机，现场考虑改签更早班新干线（SmartEX 同区段变更免费）。</p>
+    <div class="itm key">
+      <div class="rail"><span class="t-start">19:21</span><span class="t-end">21:56</span></div>
+      <div class="card trans"><div class="card-head"><span class="ttl">かがやき 516 → 东京</span><span class="sub">北陆新干线</span></div>
+        <div class="route"><span class="r-st">金沢</span><span class="r-arr">→</span><span class="r-st">東京</span><span class="r-dur">2h35m</span></div>
+        <div class="deparr"><span class="da-t">19:21</span><span class="da-l">発</span><span class="da-x">金沢駅</span><span class="da-arrow">→</span><span class="da-t">21:56</span><span class="da-l">着</span><span class="da-x">東京駅</span></div>
+        <div class="tnote wn">⚠ 11 月底北陆有降雪晚点风险：晚点 &gt;40 分 → 基本误机，现场考虑改签更早班新干线（SmartEX 同区段变更免费）</div>
+        <div class="tchips"><span class="chip shink">🚄 新干线</span><span class="chip fare">已出票</span></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>22:05</time><span class="tt">东京站转乘 → 羽田</span><span class="badge b-walk">🚃 电车</span></div>
-      <p>首选：东海道线→品川（22:16）→ 京急快特 → 羽田 T3（约 22:40 到）；备选：山手线→滨松町→东京单轨（约 22:35 到）。<b>列车晚点 15 分以上 → 东京站直接打车</b>（约 30 分 / ¥8,000–10,000）。</p>
+    <div class="itm">
+      <div class="rail"><span class="t-start">22:05</span></div>
+      <div class="card trans"><div class="card-head"><span class="ttl">东京站 → 羽田 T3</span><span class="sub">晚点&gt;15分改打车</span></div>
+        <div class="route"><span class="r-st">東京</span><span class="r-arr">→</span><span class="r-st">羽田T3</span><span class="r-dur">≈35分</span></div>
+        <div class="r-line">🚃 首选：东海道线 → 京急快特</div>
+        <div class="deparr"><span class="da-t">22:16</span><span class="da-l">発</span><span class="da-x">东海道线 → 品川</span><span class="da-arrow">→</span><span class="da-t">≈22:40</span><span class="da-l">着</span><span class="da-x">羽田T3</span></div>
+        <div class="tnote">备选：山手线 → 滨松町 → 东京单轨（约 <b class="hl">22:35</b> 到）</div>
+        <div class="tnote wn">⚠ 列车晚点 15 分以上 → 东京站直接打车（约 30 分 / <b class="hl">¥8,000–10,000</b>）</div>
+        <div class="tchips"><span class="chip">换乘 1–2 次</span></div>
+      </div>
     </div>
-    <div class="tl key">
-      <div class="row"><time>22:40–22:45</time><span class="tt">到羽田 T3</span></div>
-      <p>截止线：柜台/托运 ≈ <b>22:55</b>（起飞前 60 分）、自助值机亭 22:40（前 75 分）。无托运 + 已网上值机 = 23:00 前到都来得及。</p>
+    <div class="itm key">
+      <div class="rail"><span class="t-start">22:40</span><span class="t-end">22:45</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">到羽田 T3</span><span class="chip hard">⛔ 截止线</span></div>
+        <div class="fields"><div class="f"><span class="fl">值机</span><span class="fv">柜台/托运 ≈ <b class="hl">22:55</b>（起飞前 60 分）、自助值机亭 <b class="hl">22:40</b>（前 75 分）</span></div>
+        <div class="f"><span class="fl">余量</span><span class="fv">无托运 + 已网上值机 = <b class="hl">23:00</b> 前到都来得及</span></div></div>
+      </div>
     </div>
-    <div class="tl">
-      <div class="row"><time>23:55</time><span class="tt">UO623 起飞 → 周一 04:15 抵港</span><span class="badge b-fly">✈ 航班</span></div>
+    <div class="itm">
+      <div class="rail"><span class="t-start">23:55</span></div>
+      <div class="card"><div class="card-head"><span class="ttl">UO623 起飞</span></div>
+        <div class="fields"><div class="f"><span class="fl">航班</span><span class="fv">香港快运 · 羽田T3 → 香港T1（周一 <b class="hl">04:15</b> 抵港）</span></div></div>
+        <div class="chips"><span class="chip fly">✈ 航班</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -360,6 +491,7 @@ footer { margin-top:26px; text-align:center; font-size:11.5px; color:#9a92b5; li
 </section>
 
 <footer>
+  <a href="../">← 返回首页</a><br><br>
   节奏口诀：周六「极限通勤日」— 09:40 离开住吉 · 周日「准时撤退日」— 18:10 离开座位<br>
   数据参考：Yahoo!路線情報（2026-11-28 土 实查班次）· 京成/JR时刻表 · HK Express 值机指引 · 更新于 2026-11-25
 </footer>
@@ -367,7 +499,7 @@ footer { margin-top:26px; text-align:center; font-size:11.5px; color:#9a92b5; li
 </div>
 <script>
 (function(){
-  var links = Array.prototype.slice.call(document.querySelectorAll('nav a'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav a[href^="#"]'));
   var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
   function spy(){
     var y = window.scrollY + 90, cur = 0;
